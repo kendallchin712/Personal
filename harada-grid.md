@@ -25,7 +25,7 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 ## 1. 😴 Sleep
 - [ ] Set a fixed bedtime and wake time — same 7 days a week
 - [ ] Aim for 7.5–8 hours in bed every night
-- [ ] No screens 30 min before bed
+- [ ] Bed is for sleep only — no work or scrolling in bed
 - [ ] Keep the bedroom cool, dark, and quiet
 - [ ] No caffeine after 2pm
 - [ ] Get morning sunlight within 30 min of waking
@@ -63,14 +63,14 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 - [ ] Track drinks (water, caffeine, alcohol) for awareness
 
 ## 5. 🌅 Morning Routine
-- [ ] Wake at the same time — no snooze
-- [ ] Water + sunlight + movement in the first 30 min
+- [ ] No snooze — feet on the floor within 2 minutes
+- [ ] Run the routine in the same order daily (build the chain)
 - [ ] No phone for the first 20–30 min
 - [ ] 5-min plan: top 1–3 priorities for the day
-- [ ] Eat or prep a solid breakfast
+- [ ] Delay caffeine 60–90 min after waking
 - [ ] One small win to start (make the bed, stretch, breathe)
 - [ ] Keep the routine simple enough to do while tired
-- [ ] Lay out clothes/gear the night before
+- [ ] Cold finish to the shower to beat grogginess
 
 ## 6. 🌙 Evening Wind-down
 - [ ] "Start winding down" alarm ~1 hr before bed
@@ -94,7 +94,7 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 
 ## 8. 📊 Tracking & Accountability
 - [ ] Pick 3 keystone habits to track daily (sleep, steps, water)
-- [ ] Use a simple habit tracker (app or paper grid)
+- [ ] Log the day in under 60 seconds each night
 - [ ] Weekly 10-min review: what worked, what didn't
 - [ ] Tell one person my goal and check in with them
 - [ ] Set phone reminders for key habits
