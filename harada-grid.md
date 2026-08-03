@@ -25,12 +25,12 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 ## 1. 😴 Sleep
 - [ ] Set a fixed bedtime and wake time — same 7 days a week
 - [ ] Aim for 7.5–8 hours in bed every night
-- [ ] Bed is for sleep only — no work or scrolling in bed
+- [ ] Nap only before 3pm — and cap it at 20 min
 - [ ] Keep the bedroom cool, dark, and quiet
 - [ ] No caffeine after 2pm
 - [ ] Get morning sunlight within 30 min of waking
-- [ ] If awake >20 min at night, get up and reset (no scrolling)
-- [ ] Track sleep nightly and note how rested I feel
+- [ ] If awake >20 min at night, get up until sleepy, then return to bed
+- [ ] Get up at my set time even after a bad night (no sleep-ins)
 
 ## 2. 🏃 Movement
 - [ ] Hit 8,000+ steps every day
@@ -55,12 +55,12 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 ## 4. 💧 Hydration & Intake
 - [ ] Full glass of water right after waking
 - [ ] Aim for ~2L of water a day (carry a bottle)
-- [ ] Cap caffeine at 1–2 cups, all before 2pm
+- [ ] Cap caffeine at 1–2 cups a day
 - [ ] Limit alcohol to weekends / special occasions
 - [ ] Swap one soda or energy drink for water daily
 - [ ] Hydrate before and after workouts
 - [ ] Watch for the "tired but actually just thirsty" trap
-- [ ] Track drinks (water, caffeine, alcohol) for awareness
+- [ ] Finish most fluids by ~7pm to cut night wake-ups
 
 ## 5. 🧹 Environment
 - [ ] Make the bed every morning
@@ -80,23 +80,23 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 - [ ] 5-min plan: top 1–3 priorities for the day
 
 *Evening bookend*
-- [ ] Wind-down alarm ~1 hr before bed (same 7 days)
+- [ ] Wind-down alarm ~1 hr before bed
 - [ ] Screens off & lights dimmed 30 min before bed
 - [ ] A calming ritual (read, stretch, or shower)
-- [ ] Brain-dump tomorrow's plan + worries onto paper
+- [ ] Brain-dump what's on my mind onto paper before bed
 
 ## 7. 🧠 Mind & Stress
 - [ ] 5–10 min of breathing or meditation daily
 - [ ] Get outside / into nature a few times a week
 - [ ] Name my stressors weekly and what I can control
-- [ ] Take real breaks — actually step away from the screen
+- [ ] Do one thing at a time — stop multitasking
 - [ ] Protect one thing that recharges me (hobby, music, people)
 - [ ] One line of gratitude daily
 - [ ] Say no to one energy-draining thing this week
-- [ ] Notice and interrupt the doom-scroll spiral
+- [ ] Set a hard stop to the workday — after it, work is off
 
 ## 8. 📊 Tracking & Accountability
-- [ ] Pick 3 keystone habits to track daily (sleep, steps, water)
+- [ ] Pick 3 keystone habits to track daily
 - [ ] Log the day in under 60 seconds each night
 - [ ] Weekly 10-min review: what worked, what didn't
 - [ ] Tell one person my goal and check in with them
