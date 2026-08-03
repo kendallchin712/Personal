@@ -18,7 +18,7 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 |---|---|---|
 | 😴 **Sleep** | 🏃 **Movement** | 🥗 **Nutrition** |
 | 📊 **Tracking** | 🎯 **DAILY ENERGY** | 💧 **Hydration** |
-| 🧠 **Mind & Stress** | 🌙 **Evening** | 🧹 **Environment** |
+| 🧠 **Mind & Stress** | 🔄 **Daily Rhythm** | 🧹 **Environment** |
 
 ---
 
@@ -72,15 +72,18 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 - [ ] Friday 20-min deeper clean (vacuum, dust, reset)
 - [ ] Declutter one small zone a week (drawer, shelf, corner)
 
-## 6. 🌙 Evening Wind-down
-- [ ] "Start winding down" alarm ~1 hr before bed
-- [ ] Screens off / blue-light down 30 min before bed
-- [ ] A calming ritual (read, stretch, shower, journal)
-- [ ] Dim the lights in the evening
-- [ ] Prep for tomorrow (clothes, bag, to-do list)
-- [ ] Brain-dump worries onto paper so they're out of my head
-- [ ] No work email/Slack after a set time
-- [ ] Keep the wind-down even on weekends
+## 6. 🔄 Daily Rhythm
+*Morning bookend*
+- [ ] No snooze — feet on the floor within 2 minutes
+- [ ] No phone for the first 20–30 min
+- [ ] Delay caffeine 60–90 min after waking
+- [ ] 5-min plan: top 1–3 priorities for the day
+
+*Evening bookend*
+- [ ] Wind-down alarm ~1 hr before bed (same 7 days)
+- [ ] Screens off & lights dimmed 30 min before bed
+- [ ] A calming ritual (read, stretch, or shower)
+- [ ] Brain-dump tomorrow's plan + worries onto paper
 
 ## 7. 🧠 Mind & Stress
 - [ ] 5–10 min of breathing or meditation daily
