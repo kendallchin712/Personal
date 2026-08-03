@@ -18,7 +18,7 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 |---|---|---|
 | 😴 **Sleep** | 🏃 **Movement** | 🥗 **Nutrition** |
 | 📊 **Tracking** | 🎯 **DAILY ENERGY** | 💧 **Hydration** |
-| 🧠 **Mind & Stress** | 🌙 **Evening** | 🌅 **Morning** |
+| 🧠 **Mind & Stress** | 🌙 **Evening** | 🧹 **Environment** |
 
 ---
 
@@ -62,15 +62,15 @@ The win isn't a number on a scale. It's the *habit itself* running on autopilot 
 - [ ] Watch for the "tired but actually just thirsty" trap
 - [ ] Track drinks (water, caffeine, alcohol) for awareness
 
-## 5. 🌅 Morning Routine
-- [ ] No snooze — feet on the floor within 2 minutes
-- [ ] Run the routine in the same order daily (build the chain)
-- [ ] No phone for the first 20–30 min
-- [ ] 5-min plan: top 1–3 priorities for the day
-- [ ] Delay caffeine 60–90 min after waking
-- [ ] One small win to start (make the bed, stretch, breathe)
-- [ ] Keep the routine simple enough to do while tired
-- [ ] Cold finish to the shower to beat grogginess
+## 5. 🧹 Environment
+- [ ] Make the bed every morning
+- [ ] 10-min tidy reset before bed — clear the surfaces
+- [ ] Nothing left on the floor — clear it nightly
+- [ ] Give everything a home; put it back right away
+- [ ] Laundry before it overflows — never on the floor
+- [ ] Carry out cups, plates & trash daily
+- [ ] Friday 20-min deeper clean (vacuum, dust, reset)
+- [ ] Declutter one small zone a week (drawer, shelf, corner)
 
 ## 6. 🌙 Evening Wind-down
 - [ ] "Start winding down" alarm ~1 hr before bed
