@@ -5,60 +5,106 @@ Ring data (via the [Oura API v2](https://cloud.ouraring.com/v2/docs)) as tools,
 so Claude can read your sleep, readiness, activity, heart rate, workouts, and
 more on demand.
 
-It authenticates with an Oura **Personal Access Token (PAT)** — the simplest
-option for a single user (your own account). No OAuth app or hosting required;
-the server runs locally over stdio and Claude launches it for you.
+There are two ways to run it:
+
+- **Remote (recommended for you)** — host it publicly and add it once as a
+  **custom connector** at claude.ai. It then works on **web, the mobile apps,
+  and Claude Desktop**, because Anthropic connects to your server from their
+  cloud. This is the only option that reaches your phone and a browser.
+- **Local (laptop only)** — run it over stdio for Claude Desktop / Claude Code
+  on that one machine. Simple, but it does **not** reach your phone or the web.
+
+Since you want phone + browser + desktop, follow the **Remote** guide below.
 
 ---
 
-## 1. Get your Oura Personal Access Token
+## ⚠️ First: rotate your token
+
+If you ever pasted your Oura token into a chat or shared it, revoke it at
+<https://cloud.ouraring.com/personal-access-tokens> and create a fresh one.
+Only ever put the token into a server's environment variables — never into a
+chat, a commit, or the connector URL.
+
+---
+
+## Remote setup (phone + web + desktop)
+
+### Step 1 — Get an Oura Personal Access Token (PAT)
 
 1. Go to <https://cloud.ouraring.com/personal-access-tokens> and log in.
-2. Click **Create New Personal Access Token**, name it (e.g. "Claude"), create it.
-3. Copy the token immediately and keep it secret — it grants read access to your
-   health data. Treat it like a password.
+2. **Create New Personal Access Token**, name it (e.g. "Claude"), copy it.
+3. Keep it secret — it grants read access to your health data.
 
-## 2. Install dependencies
+### Step 2 — Generate a URL secret
 
-Requires Python 3.10+.
+The claude.ai connector form has no place for a password, so the server hides
+its endpoint behind an unguessable path segment. Generate one:
+
+```bash
+python3 -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+Copy the output — this is your `OURA_MCP_SECRET`. Your MCP endpoint will be
+`https://<your-host>/<secret>/mcp`. Anyone without that exact URL gets a 404.
+
+### Step 3 — Deploy the server (Render, free tier)
+
+The repo includes a `Dockerfile` and `render.yaml` blueprint.
+
+1. Push this repo to GitHub (this branch is already on GitHub).
+2. Create a free account at <https://render.com> and connect your GitHub.
+3. **New → Blueprint**, pick this repo. Render reads `oura-mcp/render.yaml`.
+4. When prompted, set the two environment variables (they are **not** stored in
+   git):
+   - `OURA_PERSONAL_ACCESS_TOKEN` → your Oura PAT from Step 1
+   - `OURA_MCP_SECRET` → the secret from Step 2
+5. Deploy. Render gives you a public HTTPS URL like
+   `https://oura-mcp-xxxx.onrender.com`.
+
+Your connector URL is that host **plus** `/<secret>/mcp`, e.g.
+`https://oura-mcp-xxxx.onrender.com/AbC123.../mcp`.
+
+> Any host that runs a Docker container and gives you a public HTTPS URL works
+> the same way (Railway, Fly.io, a small VPS). Render's free tier sleeps when
+> idle, so the first request after a pause takes ~30s to wake — fine for
+> personal use.
+
+### Step 4 — Add it to Claude as a custom connector
+
+Do this **once**, on any device — it then syncs to all your Claude apps
+(web, mobile, desktop) because connectors live in your account.
+
+1. Open **claude.ai → Settings → Connectors** (direct link:
+   <https://claude.ai/settings/customize-connectors>).
+2. **Add custom connector**.
+3. Name: `Oura`. URL: your full `https://<host>/<secret>/mcp`.
+4. Save. Leave OAuth fields blank (the secret path is your protection).
+5. Open a new chat, make sure the **Oura** connector is enabled for the chat,
+   and ask away — from your phone, a browser, or Claude Desktop.
+
+> Custom connectors via remote MCP are available on Free, Pro, Max, Team, and
+> Enterprise plans (Free is limited to one custom connector).
+
+### Step 5 — Ask Claude
+
+- "What was my average sleep score over the last two weeks?"
+- "Show my readiness vs. activity for the past month and flag any dips."
+- "How did my resting heart rate trend this week?"
+
+---
+
+## Local setup (laptop only, optional)
+
+If you also want it on Claude Desktop without going through the cloud:
 
 ```bash
 cd oura-mcp
-python3 -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+python3 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## 3. Provide the token
-
-Either export it in your shell:
-
-```bash
-export OURA_PERSONAL_ACCESS_TOKEN="your-token-here"
-```
-
-…or copy `.env.example` to `.env` and paste your token there (the config in
-step 4 sets the variable directly, which is what actually matters).
-
-## 4. Register the server with Claude
-
-### Claude Code (CLI)
-
-From the repo root:
-
-```bash
-claude mcp add oura \
-  --env OURA_PERSONAL_ACCESS_TOKEN="your-token-here" \
-  -- /absolute/path/to/oura-mcp/.venv/bin/python /absolute/path/to/oura-mcp/server.py
-```
-
-Or add it to a project-scoped `.mcp.json` (see the example block below), then
-restart Claude Code.
-
-### Claude Desktop
-
-Open **Settings → Developer → Edit Config** and add an entry under
-`mcpServers` (create the file if it doesn't exist):
+Then add to Claude Desktop (**Settings → Developer → Edit Config**), using
+absolute paths — a template is in `mcp.example.json`:
 
 ```json
 {
@@ -66,29 +112,18 @@ Open **Settings → Developer → Edit Config** and add an entry under
     "oura": {
       "command": "/absolute/path/to/oura-mcp/.venv/bin/python",
       "args": ["/absolute/path/to/oura-mcp/server.py"],
-      "env": {
-        "OURA_PERSONAL_ACCESS_TOKEN": "your-token-here"
-      }
+      "env": { "OURA_PERSONAL_ACCESS_TOKEN": "your-token-here" }
     }
   }
 }
 ```
 
-Use absolute paths. Restart Claude Desktop after saving. The `oura` tools will
-appear in the tools menu.
+Restart Claude Desktop. Or, for Claude Code CLI:
 
-> **Note:** stdio MCP servers run on the same machine as the Claude client, so
-> this works with Claude Code (local/CLI) and Claude Desktop. The claude.ai web
-> app only connects to remotely hosted (HTTP/SSE) connectors — to use it there
-> you'd need to host this behind an HTTP transport, which is a separate step.
-
-## 5. Ask Claude
-
-Once registered, try:
-
-- "What was my average sleep score over the last two weeks?"
-- "Show my readiness vs. activity for the past month and flag any dips."
-- "How did my resting heart rate trend this week?"
+```bash
+claude mcp add oura --env OURA_PERSONAL_ACCESS_TOKEN="your-token" \
+  -- /abs/path/oura-mcp/.venv/bin/python /abs/path/oura-mcp/server.py
+```
 
 ---
 
@@ -113,10 +148,24 @@ Date-range tools take ISO dates (`YYYY-MM-DD`) and default to the last 7 days.
 `get_heart_rate` uses ISO 8601 datetimes and defaults to the last 24 hours.
 Pagination is handled automatically.
 
-## Security
+## Files
 
-- The token is only ever read from the `OURA_PERSONAL_ACCESS_TOKEN` environment
-  variable — it is never hard-coded or logged.
+| File | Purpose |
+|------|---------|
+| `server.py` | Tool definitions + Oura API client (used by both transports) |
+| `server_http.py` | Remote Streamable-HTTP server (secret-path protected) |
+| `Dockerfile` | Container image for hosting the remote server |
+| `render.yaml` | One-click Render blueprint |
+| `mcp.example.json` | Claude Desktop config template for local use |
+| `requirements.txt` | Python dependencies |
+| `.env.example` | Token template (copy to `.env`, gitignored) |
+
+## Security notes
+
+- The Oura token is read only from `OURA_PERSONAL_ACCESS_TOKEN`; it is never
+  hard-coded, logged, or placed in the URL.
+- The remote endpoint is gated by `OURA_MCP_SECRET` in the URL path. Keep that
+  URL private (it's like a password). Rotate it by changing the env var.
 - `.env` and `*.token` are gitignored. **Never commit your real token.**
 - The PAT is read-only for your own account; revoke it anytime from the Oura
   developer portal.

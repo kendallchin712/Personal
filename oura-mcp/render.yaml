@@ -1,0 +1,18 @@
+# Render.com blueprint for the Oura remote MCP server.
+# In the Render dashboard: New > Blueprint, point it at this repo, then set the
+# two secret env vars below when prompted (they are marked sync:false so they
+# are NOT stored in git).
+services:
+  - type: web
+    name: oura-mcp
+    runtime: docker
+    dockerfilePath: ./oura-mcp/Dockerfile
+    dockerContext: ./oura-mcp
+    plan: free
+    # No healthCheckPath: the app only serves /<secret>/mcp, so a root health
+    # check would 404. Render falls back to detecting the open port.
+    envVars:
+      - key: OURA_PERSONAL_ACCESS_TOKEN
+        sync: false
+      - key: OURA_MCP_SECRET
+        sync: false
