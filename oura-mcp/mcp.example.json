@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "oura": {
+      "command": "/absolute/path/to/oura-mcp/.venv/bin/python",
+      "args": ["/absolute/path/to/oura-mcp/server.py"],
+      "env": {
+        "OURA_PERSONAL_ACCESS_TOKEN": "your-token-here"
+      }
+    }
+  }
+}
