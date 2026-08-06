@@ -49,6 +49,13 @@ def build_app():
         streamable_http_path=path,
         host="0.0.0.0",
         transport_security=transport_security,
+        # Claude's remote-connector client fetches tools over separate,
+        # independently-routed HTTP requests. Stateless + plain-JSON responses
+        # avoid depending on a persistent SSE session that a proxy or a
+        # cold-starting free-tier host can drop — which otherwise shows up as
+        # "This connector has no tools available".
+        stateless_http=True,
+        json_response=True,
     )
     return app, path
 
