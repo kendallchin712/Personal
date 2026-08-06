@@ -49,11 +49,13 @@ Copy the output — this is your `OURA_MCP_SECRET`. Your MCP endpoint will be
 
 ### Step 3 — Deploy the server (Render, free tier)
 
-The repo includes a `Dockerfile` and `render.yaml` blueprint.
+The repo includes `oura-mcp/Dockerfile` and a `render.yaml` blueprint at the
+repo root.
 
 1. Push this repo to GitHub (this branch is already on GitHub).
 2. Create a free account at <https://render.com> and connect your GitHub.
-3. **New → Blueprint**, pick this repo. Render reads `oura-mcp/render.yaml`.
+3. **New → Blueprint**, pick this repo and this branch. Render reads the
+   root `render.yaml`.
 4. When prompted, set the two environment variables (they are **not** stored in
    git):
    - `OURA_PERSONAL_ACCESS_TOKEN` → your Oura PAT from Step 1
