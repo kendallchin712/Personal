@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Parrs Australia — Enquiry Form</title>
+<style>
+  /* ============================================================
+     CONFIG is in the <script> block near the bottom of this file.
+     Set APPS_SCRIPT_URL and STAFF there. See SETUP.md.
+     ============================================================ */
+
+  :root {
+    --paper: #f7f5f0;
+    --panel: #fffdf9;
+    --ink: #221f1a;
+    --muted: #6f685c;
+    --hair: #e2ddd2;
+    --hair-strong: #c9c2b3;
+    --gold: #c9871f;
+    --gold-bg: #f6ead2;
+    --gold-ink: #7a5210;
+    --leaf: #3a6b4a;         /* Parrs green */
+    --leaf-bg: #e4efe7;
+    --band: #2b2a26;         /* dark header band, echoes paper form logo bar */
+    --band-ink: #f4f1ea;
+    --hot: #c0392b;  --hot-bg: #f8e2df;
+    --warm: #c9871f; --warm-bg: #f6ead2;
+    --cold: #2a6f9f; --cold-bg: #dcecf5;
+    --ok: #2f7d4f;
+    --err: #c0392b;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+    --radius: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#16150f; --panel:#201e17; --ink:#ece7db; --muted:#9c9587;
+      --hair:#322f26; --hair-strong:#46422f;
+      --gold:#e6ab4a; --gold-bg:#3a2e12; --gold-ink:#f2cd85;
+      --leaf:#77b98c; --leaf-bg:#18301f;
+      --band:#0f0e0a; --band-ink:#f0ede4;
+      --hot:#e57368; --hot-bg:#3a1c19;
+      --warm:#e6ab4a; --warm-bg:#3a2e12;
+      --cold:#63a9d4; --cold-bg:#122a3a;
+      --ok:#6fc98c; --err:#e57368;
+    }
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 120px; }
+
+  /* ---- header band (Parrs branding) ---- */
+  .band {
+    background: var(--band); color: var(--band-ink);
+    padding: 18px 22px 16px; display: flex; align-items: center;
+    gap: 14px; flex-wrap: wrap;
+  }
+  .logo { display: flex; flex-direction: column; line-height: 1; }
+  .logo .word {
+    font-family: var(--serif); font-weight: 700; font-size: 30px;
+    letter-spacing: .01em;
+  }
+  .logo .word span { color: var(--leaf); }
+  .logo .since {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .32em;
+    text-transform: uppercase; color: #b9b3a5; margin-top: 4px;
+  }
+  .band .title {
+    margin-left: auto; text-align: right;
+    font-family: var(--serif); font-weight: 700; font-size: 15px;
+    letter-spacing: .04em; text-transform: uppercase; color: #d8d3c7;
+  }
+
+  .contactline {
+    background: var(--band); color: #b9b3a5;
+    padding: 0 22px 16px; font-size: 11.5px; line-height: 1.6;
+    font-family: var(--mono);
+  }
+  .contactline a { color: #cfc9bc; text-decoration: none; }
+
+  /* ---- toolbar ---- */
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--panel); border-bottom: 1px solid var(--hair);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 10px 16px;
+  }
+  .staff-pick { display: flex; align-items: center; gap: 8px; }
+  .staff-pick label {
+    font-size: 12px; color: var(--muted); font-family: var(--mono);
+    text-transform: uppercase; letter-spacing: .1em;
+  }
+  .toolbar .spacer { margin-left: auto; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; padding: 7px 12px;
+    border-radius: 999px; border: 1px solid var(--hair-strong);
+    background: var(--panel); color: var(--ink); cursor: pointer;
+    min-height: 40px;
+  }
+  .chip.count { background: var(--leaf-bg); color: var(--leaf); border-color: transparent; cursor: default; }
+  .chip.warnbadge { background: var(--warm-bg); color: var(--gold-ink); border-color: transparent; }
+  .chip.warnbadge.zero { display: none; }
+  .chip:active { transform: scale(.97); }
+
+  /* ---- form ---- */
+  form { padding: 20px 16px 0; }
+  .intro {
+    font-family: var(--serif); font-size: 15px; color: var(--muted);
+    margin: 4px 0 20px;
+  }
+  .field { margin-bottom: 18px; }
+  .field > label {
+    display: block; font-weight: 600; font-size: 14px;
+    margin-bottom: 7px; color: var(--ink);
+  }
+  .field .req { color: var(--err); font-weight: 700; }
+  .field .hint { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+
+  input[type=text], input[type=email], input[type=tel],
+  input[type=date], input[type=number], select, textarea {
+    width: 100%; font-family: var(--sans);
+    font-size: 17px;                 /* >=16px prevents iOS zoom-on-focus */
+    color: var(--ink); background: var(--panel);
+    border: 1.5px solid var(--hair-strong); border-radius: var(--radius);
+    padding: 13px 14px; min-height: 52px; line-height: 1.35;
+    -webkit-appearance: none; appearance: none;
+    transition: border-color .12s ease, box-shadow .12s ease;
+  }
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236f685c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat; background-position: right 14px center;
+    padding-right: 40px;
+  }
+  textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+  input:focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-bg);
+  }
+  input.invalid, select.invalid, textarea.invalid { border-color: var(--err); }
+  .field-error { color: var(--err); font-size: 12.5px; margin-top: 6px; display: none; }
+  .field.showerr .field-error { display: block; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 460px) { .row, .row-3 { grid-template-columns: 1fr; } }
+
+  fieldset { border: 0; margin: 0; padding: 0; }
+
+  /* ---- segmented lead rating ---- */
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg label {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 54px; border-radius: var(--radius); cursor: pointer;
+    border: 1.5px solid var(--hair-strong); background: var(--panel);
+    font-weight: 700; font-size: 15px; color: var(--muted);
+    user-select: none; transition: all .12s ease;
+  }
+  .seg label .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .seg .hot   .dot { background: var(--hot); }
+  .seg .warm  .dot { background: var(--warm); }
+  .seg .cold  .dot { background: var(--cold); }
+  .seg input:checked + label.hot  { background: var(--hot-bg);  border-color: var(--hot);  color: var(--hot); }
+  .seg input:checked + label.warm { background: var(--warm-bg); border-color: var(--warm); color: var(--gold-ink); }
+  .seg input:checked + label.cold { background: var(--cold-bg); border-color: var(--cold); color: var(--cold); }
+  .seg label:active { transform: scale(.98); }
+
+  /* ---- sticky save bar ---- */
+  .savebar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    background: var(--panel); border-top: 1px solid var(--hair);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    display: flex; gap: 12px; align-items: center;
+  }
+  .btn {
+    font-family: var(--sans); font-size: 16px; font-weight: 700;
+    border-radius: var(--radius); border: 1.5px solid var(--hair-strong);
+    background: var(--panel); color: var(--ink); cursor: pointer;
+    min-height: 54px; padding: 0 18px;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn.primary {
+    flex: 1; background: var(--leaf); border-color: var(--leaf);
+    color: #fff; font-size: 18px;
+  }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #06120a; } }
+  .btn.ghost { color: var(--muted); }
+
+  /* ---- toast ---- */
+  .toast {
+    position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: var(--paper);
+    padding: 13px 20px; border-radius: 999px; font-weight: 600; font-size: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25); opacity: 0; pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease; z-index: 50;
+    display: flex; align-items: center; gap: 9px; max-width: 90vw;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.ok { background: var(--ok); color: #06120a; }
+  .toast.err { background: var(--err); color: #fff; }
+
+  /* ---- config warning ---- */
+  .setupwarn {
+    margin: 16px; padding: 14px 16px; border-radius: var(--radius);
+    background: var(--warm-bg); color: var(--gold-ink);
+    border: 1px solid var(--warm); font-size: 13.5px; line-height: 1.5;
+  }
+  .setupwarn code { font-family: var(--mono); font-size: 12.5px; }
+  .setupwarn.hide { display: none; }
+
+  .foot {
+    text-align: center; font-family: var(--serif); font-style: italic;
+    color: var(--muted); font-size: 15px; margin: 26px 16px 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="band">
+    <div class="logo">
+      <div class="word">par<span>r</span>s</div>
+      <div class="since">Since 1951</div>
+    </div>
+    <div class="title">Australia<br>Enquiry Form</div>
+  </div>
+  <div class="contactline">
+    Parrs Australia Pty Ltd · Lower Ground Level, 19 Whiting Street, Artarmon NSW 2064<br>
+    Ph +61 466 580 141 · <a href="mailto:contact@parrsaustralia.com.au">contact@parrsaustralia.com.au</a> · <a href="https://www.parrsaustralia.com.au">www.parrsaustralia.com.au</a>
+  </div>
+
+  <div id="setupwarn" class="setupwarn hide">
+    <b>Setup needed:</b> this form isn't connected to the Google Sheet yet. Leads you save
+    are still kept safely on this device and can be exported — but they won't reach the Sheet
+    until <code>APPS_SCRIPT_URL</code> is set. See <code>SETUP.md</code>.
+  </div>
+
+  <div class="toolbar">
+    <div class="staff-pick">
+      <label for="staff">Captured by</label>
+      <select id="staff" style="min-height:40px;padding:8px 32px 8px 12px;font-size:15px;width:auto;"></select>
+    </div>
+    <div class="spacer"></div>
+    <span class="chip count" id="countChip" title="Leads captured on this device">0 today</span>
+    <button type="button" class="chip warnbadge zero" id="syncChip">0 unsynced · Sync now</button>
+    <button type="button" class="chip" id="exportBtn">Export CSV</button>
+  </div>
+
+  <form id="leadForm" novalidate>
+    <p class="intro">Fill this in with the visitor — every lead lands in the shared Google Sheet for follow-up.</p>
+
+    <div class="field">
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+      <input type="text" id="name" name="name" autocomplete="off" autocapitalize="words" placeholder="Visitor's full name">
+      <div class="field-error" data-for="name">Please enter the visitor's name.</div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="email">Email Address <span class="hint">(email or phone)</span></label>
+        <input type="email" id="email" name="email" autocomplete="off" autocapitalize="off" inputmode="email" placeholder="name@store.com.au">
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" autocomplete="off" inputmode="tel" placeholder="04xx xxx xxx">
+      </div>
+    </div>
+    <div class="field showerr-target" id="contactErrWrap" style="margin-top:-8px;">
+      <div class="field-error" data-for="contact">Please enter an email or a phone number so we can follow up.</div>
+    </div>
+
+    <div class="field">
+      <label for="store">Store name</label>
+      <input type="text" id="store" name="store" autocomplete="off" autocapitalize="words" placeholder="Business / store name">
+    </div>
+
+    <div class="field">
+      <label for="address">Store address</label>
+      <input type="text" id="address" name="address" autocomplete="off" autocapitalize="words" placeholder="Street address">
+    </div>
+
+    <div class="row-3">
+      <div class="field">
+        <label for="suburb">Suburb</label>
+        <input type="text" id="suburb" name="suburb" autocomplete="off" autocapitalize="words">
+      </div>
+      <div class="field">
+        <label for="state">State</label>
+        <select id="state" name="state">
+          <option value="">—</option>
+          <option>NSW</option><option>VIC</option><option>QLD</option>
+          <option>WA</option><option>SA</option><option>TAS</option>
+          <option>ACT</option><option>NT</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="postcode">Postcode</label>
+        <input type="number" id="postcode" name="postcode" inputmode="numeric" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Lead rating</label>
+      <fieldset class="seg" aria-label="Lead rating">
+        <input type="radio" name="rating" id="r-hot" value="Hot">
+        <label class="hot" for="r-hot"><span class="dot"></span>Hot</label>
+        <input type="radio" name="rating" id="r-warm" value="Warm" checked>
+        <label class="warm" for="r-warm"><span class="dot"></span>Warm</label>
+        <input type="radio" name="rating" id="r-cold" value="Cold">
+        <label class="cold" for="r-cold"><span class="dot"></span>Cold</label>
+      </fieldset>
+    </div>
+
+    <div class="field">
+      <label for="enquiry">Interested in / to discuss</label>
+      <textarea id="enquiry" name="enquiry" placeholder="Please note what they're interested in and would like to discuss further for our representative to contact them…"></textarea>
+    </div>
+
+    <p class="foot">Thank you for your Enquiry</p>
+  </form>
+
+  <div class="savebar">
+    <button type="button" class="btn ghost" id="clearBtn">Clear</button>
+    <button type="submit" form="leadForm" class="btn primary" id="saveBtn">Save lead</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+  /* ============================================================
+     CONFIG — edit these two values (see SETUP.md)
+     ============================================================ */
+
+  // Paste the Apps Script Web App URL here (ends in /exec). Leave blank until deployed.
+  const APPS_SCRIPT_URL = "";
+
+  // The team members who might be manning the stand. Edit freely.
+  const STAFF = ["Joyce", "Kendall", "Other"];
+
+  /* ============================================================
+     No need to edit below this line.
+     ============================================================ */
+
+  const LS_KEY   = "parrs_leads_v1";
+  const LS_STAFF = "parrs_last_staff";
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("leadForm");
+
+  // ---- staff picker ----
+  const staffSel = $("staff");
+  STAFF.forEach(n => { const o = document.createElement("option"); o.textContent = n; staffSel.appendChild(o); });
+  staffSel.value = localStorage.getItem(LS_STAFF) || STAFF[0] || "";
+  staffSel.addEventListener("change", () => localStorage.setItem(LS_STAFF, staffSel.value));
+
+  // ---- setup warning ----
+  if (APPS_SCRIPT_URL) $("setupwarn").classList.add("hide");
+  else $("setupwarn").classList.remove("hide");
+
+  // ---- date default = today (local) ----
+  function todayISO() {
+    const d = new Date(); const off = d.getTimezoneOffset();
+    return new Date(d.getTime() - off * 60000).toISOString().slice(0, 10);
+  }
+  $("date").value = todayISO();
+
+  // ---- local store ----
+  const load = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch { return []; } };
+  const save = (arr) => localStorage.setItem(LS_KEY, JSON.stringify(arr));
+
+  function refreshBadges() {
+    const leads = load();
+    const unsynced = leads.filter(l => !l.synced).length;
+    $("countChip").textContent = leads.length + (leads.length === 1 ? " lead" : " leads");
+    const sc = $("syncChip");
+    sc.textContent = unsynced + " unsynced · Sync now";
+    sc.classList.toggle("zero", unsynced === 0);
+  }
+
+  // ---- toast ----
+  let toastT;
+  function toast(msg, kind) {
+    const t = $("toast");
+    t.className = "toast show" + (kind ? " " + kind : "");
+    t.textContent = "";
+    if (kind === "ok") { const s = document.createElement("span"); s.textContent = "✓"; t.appendChild(s); }
+    t.appendChild(document.createTextNode(msg));
+    clearTimeout(toastT);
+    toastT = setTimeout(() => t.classList.remove("show"), 2600);
+  }
+
+  // ---- send one lead to Apps Script ----
+  // Uses text/plain + no-cors so there is no CORS preflight; the request goes
+  // through even though we can't read the opaque response. A rejected promise
+  // (offline / DNS) means it stays queued.
+  async function push(lead) {
+    if (!APPS_SCRIPT_URL) throw new Error("no-endpoint");
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(lead.data),
+    });
+  }
+
+  async function trySync(lead) {
+    try { await push(lead); lead.synced = true; return true; }
+    catch { lead.synced = false; return false; }
+  }
+
+  async function syncAll(showToast) {
+    const leads = load();
+    const pending = leads.filter(l => !l.synced);
+    if (!pending.length) { if (showToast) toast("Everything's synced", "ok"); return; }
+    if (!APPS_SCRIPT_URL) { if (showToast) toast("Not connected to the Sheet yet — see SETUP.md", "err"); return; }
+    let done = 0;
+    for (const l of pending) { if (await trySync(l)) done++; }
+    save(leads); refreshBadges();
+    if (showToast) {
+      if (done === pending.length) toast("Synced " + done + " lead" + (done === 1 ? "" : "s"), "ok");
+      else toast("Synced " + done + " of " + pending.length + " — check connection", "err");
+    }
+  }
+
+  // ---- validation ----
+  function clearErrors() {
+    form.querySelectorAll(".field.showerr").forEach(f => f.classList.remove("showerr"));
+    form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
+    $("contactErrWrap").classList.remove("showerr");
+  }
+  function validate() {
+    clearErrors();
+    let ok = true;
+    const name = $("name");
+    if (!name.value.trim()) {
+      ok = false; name.classList.add("invalid");
+      name.closest(".field").classList.add("showerr");
+    }
+    const hasContact = $("email").value.trim() || $("phone").value.trim();
+    if (!hasContact) {
+      ok = false;
+      $("email").classList.add("invalid"); $("phone").classList.add("invalid");
+      $("contactErrWrap").classList.add("showerr");
+    }
+    if (!ok) {
+      const firstBad = form.querySelector(".invalid");
+      if (firstBad) firstBad.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    return ok;
+  }
+
+  // ---- collect + reset ----
+  function collect() {
+    return {
+      date: $("date").value,
+      capturedBy: staffSel.value,
+      name: $("name").value.trim(),
+      email: $("email").value.trim(),
+      phone: $("phone").value.trim(),
+      store: $("store").value.trim(),
+      address: $("address").value.trim(),
+      suburb: $("suburb").value.trim(),
+      state: $("state").value,
+      postcode: $("postcode").value.trim(),
+      rating: (form.querySelector("input[name=rating]:checked") || {}).value || "",
+      enquiry: $("enquiry").value.trim(),
+      submittedAt: new Date().toISOString(),
+    };
+  }
+  // Reset everything EXCEPT date + captured-by, so back-to-back capture is fast.
+  function resetForm() {
+    ["name","email","phone","store","address","suburb","postcode","enquiry"].forEach(id => $(id).value = "");
+    $("state").value = "";
+    $("r-warm").checked = true;
+    clearErrors();
+    $("name").focus();
+  }
+
+  // ---- submit ----
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!validate()) { toast("Add a name and a contact method", "err"); return; }
+    const lead = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), synced: false, data: collect() };
+    const leads = load(); leads.push(lead); save(leads);
+    refreshBadges();
+    resetForm();
+    toast("Lead saved", "ok");
+    // fire-and-forget sync; badge updates when it settles
+    if (APPS_SCRIPT_URL) { if (await trySync(lead)) { save(leads); refreshBadges(); } }
+  });
+
+  // ---- buttons ----
+  $("clearBtn").addEventListener("click", () => { resetForm(); toast("Cleared"); });
+  $("syncChip").addEventListener("click", () => syncAll(true));
+
+  $("exportBtn").addEventListener("click", () => {
+    const leads = load();
+    if (!leads.length) { toast("No leads to export yet"); return; }
+    const cols = ["date","capturedBy","name","email","phone","store","address","suburb","state","postcode","rating","enquiry","submittedAt"];
+    const head = ["Date","Captured by","Name","Email","Phone","Store name","Address","Suburb","State","Postcode","Rating","Interested in / to discuss","Submitted at (device)"];
+    const esc = (v) => '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
+    const rows = leads.map(l => cols.map(c => esc(l.data[c])).join(","));
+    const csv = "﻿" + head.map(esc).join(",") + "\r\n" + rows.join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "parrs-leads-" + todayISO() + ".csv";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast("Exported " + leads.length + " lead" + (leads.length === 1 ? "" : "s"), "ok");
+  });
+
+  // ---- auto-sync when connection returns ----
+  window.addEventListener("online", () => syncAll(false));
+
+  // ---- init ----
+  refreshBadges();
+  if (APPS_SCRIPT_URL && navigator.onLine) syncAll(false);
+</script>
+</body>
+</html>
