@@ -1,0 +1,160 @@
+<title>The 60-Minute Hotel Reset</title>
+<style>
+  :root {
+    --paper:#f7f5f0; --panel:#fffdf9; --ink:#221f1a; --muted:#6f685c;
+    --hair:#e2ddd2; --hair-strong:#c9c2b3;
+    --gold:#c9871f; --gold-bg:#f6ead2; --gold-ink:#7a5210;
+    --accent:#2a869f; --accent-bg:#ddeff3;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular","Cascadia Code",Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#16150f; --panel:#201e17; --ink:#ece7db; --muted:#9c9587;
+      --hair:#322f26; --hair-strong:#46422f; --gold:#e6ab4a; --gold-bg:#3a2e12; --gold-ink:#f2cd85;
+      --accent:#63bcd4; --accent-bg:#12303a; }
+  }
+  :root[data-theme="light"]{ --paper:#f7f5f0; --panel:#fffdf9; --ink:#221f1a; --muted:#6f685c;
+    --hair:#e2ddd2; --hair-strong:#c9c2b3; --gold:#c9871f; --gold-bg:#f6ead2; --gold-ink:#7a5210;
+    --accent:#2a869f; --accent-bg:#ddeff3; }
+  :root[data-theme="dark"]{ --paper:#16150f; --panel:#201e17; --ink:#ece7db; --muted:#9c9587;
+    --hair:#322f26; --hair-strong:#46422f; --gold:#e6ab4a; --gold-bg:#3a2e12; --gold-ink:#f2cd85;
+    --accent:#63bcd4; --accent-bg:#12303a; }
+
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.5; }
+  .wrap{ max-width:760px; margin:0 auto; padding:48px 24px 72px; }
+
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 14px; }
+  h1{ font-family:var(--serif); font-weight:700; font-size:clamp(28px,5vw,42px); line-height:1.12;
+    letter-spacing:-.01em; margin:0; max-width:16ch; }
+  h1 em{ font-style:italic; color:var(--gold); }
+  .lede{ font-family:var(--serif); font-size:16.5px; line-height:1.55; color:var(--muted);
+    max-width:60ch; margin:18px 0 0; }
+  .meta{ display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:20px; font-family:var(--mono);
+    font-size:12.5px; color:var(--muted); }
+  .meta b{ color:var(--ink); }
+
+  .bar{ margin:30px 0 8px; height:8px; border-radius:99px; background:var(--hair); overflow:hidden; }
+  .bar > i{ display:block; height:100%; width:0; background:var(--gold); transition:width .25s ease; }
+  .barlabel{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+  .barlabel b{ color:var(--ink); font-variant-numeric:tabular-nums; }
+
+  .pass{ background:var(--panel); border:1px solid var(--hair); border-radius:14px;
+    padding:18px 18px 8px; margin-top:16px; }
+  .pass-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+  .pass-num{ font-family:var(--serif); font-weight:700; font-size:15px; color:var(--gold);
+    background:var(--gold-bg); border-radius:7px; width:26px; height:26px; display:inline-flex;
+    align-items:center; justify-content:center; flex:0 0 auto; }
+  .pass-title{ font-family:var(--serif); font-weight:700; font-size:18px; }
+  .pass-time{ margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--muted);
+    letter-spacing:.04em; }
+  .pass-note{ color:var(--muted); font-size:13.5px; margin:2px 0 12px; }
+
+  ul{ list-style:none; margin:0; padding:0; }
+  li{ display:flex; gap:11px; align-items:flex-start; padding:9px 4px; cursor:pointer;
+    border-top:1px solid var(--hair); user-select:none; }
+  li:first-child{ border-top:none; }
+  .box{ flex:0 0 auto; width:19px; height:19px; border-radius:5px; border:1.8px solid var(--hair-strong);
+    margin-top:1px; display:inline-flex; align-items:center; justify-content:center;
+    transition:background .12s,border-color .12s; }
+  .box svg{ width:12px; height:12px; opacity:0; transition:opacity .12s; }
+  li.done .box{ background:var(--gold); border-color:var(--gold); }
+  li.done .box svg{ opacity:1; }
+  li.done .txt{ color:var(--muted); text-decoration:line-through; text-decoration-thickness:1.5px; opacity:.7; }
+  .txt{ font-size:14.5px; line-height:1.4; }
+
+  .turndown{ background:var(--accent-bg); border:1px solid transparent; border-radius:14px;
+    padding:18px; margin-top:16px; }
+  .turndown .pass-title{ color:var(--accent); }
+  .turndown .pass-num{ color:var(--accent); background:transparent; font-size:20px; }
+
+  .nightly{ margin-top:30px; padding:18px; border:1px dashed var(--hair-strong); border-radius:14px; }
+  .nightly h2{ font-family:var(--serif); font-size:18px; margin:0 0 4px; }
+  .nightly p{ color:var(--muted); font-size:13.5px; margin:0 0 12px; }
+
+  .foot{ margin-top:30px; font-family:var(--serif); font-style:italic; font-size:16px; color:var(--ink); }
+  .foot b{ color:var(--gold); font-style:normal; }
+  .hint{ font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; }
+
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Everyday Holiday · Room → Villa</p>
+  <h1>The 60-minute <em>hotel reset</em></h1>
+  <p class="lede">You already have the view, the pool, the styling. The only thing between your room and the holiday photo is about an hour of resetting — done in fast passes so you get quick wins instead of drowning. Put the Melbourne playlist on and work top to bottom.</p>
+  <div class="meta">
+    <span><b>Time</b> ~60 min</span>
+    <span><b>Method</b> one pass at a time</span>
+    <span><b>Rule</b> off the bed & floor first</span>
+  </div>
+
+  <div class="barlabel"><b id="count">0</b> / <span id="total">0</span> done · <b id="pct">0%</b></div>
+  <div class="bar"><i id="fill"></i></div>
+
+  <div id="passes"></div>
+
+  <div class="nightly">
+    <h2>🌙 The 10-minute nightly reset</h2>
+    <p>So it never gets back to square one. This is the "never miss twice" rule from your energy grid, applied to the room.</p>
+    <ul id="nightly"></ul>
+  </div>
+
+  <div class="foot">The one rule: <b>uncover the villa, then keep it uncovered.</b></div>
+  <div class="hint">Tap anything to check it off · this working copy resets on reload</div>
+</div>
+
+<script>
+  const PASSES = [
+    {n:"1", t:"Clothes", time:"~20 min", note:"80% of the visual noise. Two piles only — don't fold now, just clear.",
+     items:["Dirty clothes → straight into the laundry bag","Clean clothes → one basket to deal with later","Clear the bed completely — this alone transforms the room","Clear the floor — nothing left down","Bags & jackets onto hooks or into the wardrobe"]},
+    {n:"2", t:"Shopping bags", time:"~10 min", note:"The 'mid-life-admin' signal that kills the calm.",
+     items:["Unpack every bag","Decide keep or return — returns by the door","Break down & recycle the paper/retail bags","Put the keepers where they actually live"]},
+    {n:"3", t:"Surfaces", time:"~10 min", note:"Desk + nightstand. Leave only what's beautiful.",
+     items:["Water bottles, cups & plates → kitchen","Rubbish binned","Cables corralled / tucked","Leave out only the candle, diffuser & one nice object"]},
+    {n:"4", t:"Bathroom", time:"~10 min", note:"A clear floor is 90% of a hotel bathroom.",
+     items:["Bags & boxes off the floor","Hair tools into the basket / drawer","Products lined up, extras stashed","Quick wipe of the sink & mirror","Fresh towel squared on the rail"]}
+  ];
+  const TURNDOWN = {n:"✦", t:"The turndown moment", time:"~5 min", note:"The payoff. Do this last and stand back.",
+     items:["Make the bed properly — pull it tight","Open the blinds all the way to the view","Light the candle · diffuser on","Dim to lamps, not the harsh overhead","Step back and actually look — that's your villa"]};
+  const NIGHTLY = ["Clear every surface back to just the nice things","Clothes away or in the basket — floor clear","Cups & plates carried out","Bed roughly straightened for the morning"];
+
+  const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+  let total=0, done=0;
+  const countEl=document.getElementById("count"), pctEl=document.getElementById("pct"),
+        fillEl=document.getElementById("fill"), totalEl=document.getElementById("total");
+
+  function makeItem(text){
+    const li=document.createElement("li");
+    li.innerHTML=`<span class="box">${CHECK}</span><span class="txt">${text}</span>`;
+    li.addEventListener("click",()=>{
+      const on=li.classList.toggle("done");
+      done+=on?1:-1; render();
+    });
+    total++; return li;
+  }
+  function render(){
+    countEl.textContent=done; totalEl.textContent=total;
+    const p=total?Math.round(done/total*100):0;
+    pctEl.textContent=p+"%"; fillEl.style.width=p+"%";
+  }
+
+  const wrap=document.getElementById("passes");
+  function block(p, cls){
+    const d=document.createElement("div"); d.className="pass "+(cls||"");
+    d.innerHTML=`<div class="pass-head"><span class="pass-num">${p.n}</span>
+      <span class="pass-title">${p.t}</span><span class="pass-time">${p.time}</span></div>
+      <div class="pass-note">${p.note}</div>`;
+    const ul=document.createElement("ul");
+    p.items.forEach(t=>ul.appendChild(makeItem(t)));
+    d.appendChild(ul); return d;
+  }
+  PASSES.forEach(p=>wrap.appendChild(block(p)));
+  wrap.appendChild(block(TURNDOWN,"turndown"));
+  const nUl=document.getElementById("nightly");
+  NIGHTLY.forEach(t=>nUl.appendChild(makeItem(t)));
+  render();
+</script>

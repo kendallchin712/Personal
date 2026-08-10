@@ -1,0 +1,124 @@
+<title>Resort Day at Home — Melbourne</title>
+<style>
+  :root {
+    --paper:#f7f5f0; --panel:#fffdf9; --ink:#221f1a; --muted:#6f685c;
+    --hair:#e2ddd2; --hair-strong:#c9c2b3;
+    --gold:#c9871f; --gold-bg:#f6ead2; --gold-ink:#7a5210;
+    --line:#c9871f;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular","Cascadia Code",Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#16150f; --panel:#201e17; --ink:#ece7db; --muted:#9c9587;
+      --hair:#322f26; --hair-strong:#46422f; --gold:#e6ab4a; --gold-bg:#3a2e12; --gold-ink:#f2cd85; --line:#e6ab4a; }
+  }
+  :root[data-theme="light"]{ --paper:#f7f5f0; --panel:#fffdf9; --ink:#221f1a; --muted:#6f685c;
+    --hair:#e2ddd2; --hair-strong:#c9c2b3; --gold:#c9871f; --gold-bg:#f6ead2; --gold-ink:#7a5210; --line:#c9871f; }
+  :root[data-theme="dark"]{ --paper:#16150f; --panel:#201e17; --ink:#ece7db; --muted:#9c9587;
+    --hair:#322f26; --hair-strong:#46422f; --gold:#e6ab4a; --gold-bg:#3a2e12; --gold-ink:#f2cd85; --line:#e6ab4a; }
+
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.5; }
+  .wrap{ max-width:720px; margin:0 auto; padding:48px 24px 72px; }
+
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 14px; }
+  h1{ font-family:var(--serif); font-weight:700; font-size:clamp(28px,5vw,42px); line-height:1.12;
+    letter-spacing:-.01em; margin:0; max-width:15ch; }
+  h1 em{ font-style:italic; color:var(--gold); }
+  .lede{ font-family:var(--serif); font-size:16.5px; line-height:1.55; color:var(--muted);
+    max-width:60ch; margin:18px 0 0; }
+
+  .timeline{ margin-top:34px; position:relative; padding-left:34px; }
+  .timeline::before{ content:""; position:absolute; left:11px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(var(--line),var(--hair)); }
+  .stop{ position:relative; margin-bottom:26px; }
+  .dot{ position:absolute; left:-34px; top:0; width:24px; height:24px; border-radius:50%;
+    background:var(--gold-bg); border:2px solid var(--gold); display:flex; align-items:center;
+    justify-content:center; font-size:12px; }
+  .time{ font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--gold); font-weight:600; }
+  .stop h3{ font-family:var(--serif); font-size:19px; margin:3px 0 6px; }
+  .stop p{ margin:0; color:var(--muted); font-size:14.5px; line-height:1.5; }
+  .stop .mel{ color:var(--ink); }
+
+  .card{ background:var(--panel); border:1px solid var(--hair); border-radius:14px; padding:18px 20px;
+    margin-top:8px; }
+  .card h2{ font-family:var(--serif); font-size:18px; margin:0 0 10px; }
+  .card ul{ margin:0; padding-left:18px; }
+  .card li{ margin:5px 0; font-size:14px; color:var(--muted); }
+  .card li b{ color:var(--ink); font-weight:600; }
+
+  .rainy{ margin-top:22px; }
+
+  .foot{ margin-top:32px; font-family:var(--serif); font-style:italic; font-size:16px; }
+  .foot b{ color:var(--gold); font-style:normal; }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Everyday Holiday · The at-home resort day</p>
+  <h1>A <em>resort day</em>, no airport required</h1>
+  <p class="lede">You live in a building with a pool, a gym, and a skyline view — the exact brochure of a five-star hotel. A guest here would have the time of their life on an ordinary Saturday. This is their itinerary. Follow it loosely; the point is the pace, not the schedule.</p>
+
+  <div class="timeline">
+    <div class="stop">
+      <span class="dot">🏊</span>
+      <div class="time">8:30 — MORNING SWIM</div>
+      <h3>Start in the water</h3>
+      <p>Down to the <span class="mel">pool</span> before the day gets loud. A slow swim or just a float. This is your spa morning, and it's an elevator ride away — no booking, no crowd.</p>
+    </div>
+    <div class="stop">
+      <span class="dot">☕</span>
+      <div class="time">9:30 — COFFEE WITH THE VIEW</div>
+      <h3>The room-service moment</h3>
+      <p>Back up to a <span class="mel">clear, made-up room</span>, blinds open. Good coffee, something nice to eat, and that skyline. No phone for the first bit — just be the guest admiring the view they paid for.</p>
+    </div>
+    <div class="stop">
+      <span class="dot">🗺️</span>
+      <div class="time">11:00 — GO EXPLORE</div>
+      <h3>Play tourist in your own city</h3>
+      <p>Out into Melbourne with fresh eyes: <span class="mel">the laneways, Queen Vic Market, a new café, the NGV, or a tram to St Kilda</span>. If the weather's glorious, this is where a day-trip slots in instead — the coast is an hour away.</p>
+    </div>
+    <div class="stop">
+      <span class="dot">🛋️</span>
+      <div class="time">3:00 — POOLSIDE / REST, NO GUILT</div>
+      <h3>The afternoon do-nothing</h3>
+      <p>A book by the <span class="mel">pool</span>, a lie-down, a slow shower like a spa. On holiday the afternoon is allowed to be empty. Let it be. This is the part you always skip — don't.</p>
+    </div>
+    <div class="stop">
+      <span class="dot">🍷</span>
+      <div class="time">7:00 — DINNER, DONE PROPERLY</div>
+      <h3>Set the table like a guest</h3>
+      <p>Cook the special thing or bring home something lovely — but <span class="mel">set the table</span>, use the nice glass, light the candle, put the playlist on. Eat by the window as the city lights come up.</p>
+    </div>
+    <div class="stop">
+      <span class="dot">🌆</span>
+      <div class="time">9:00 — GOLDEN HOUR WIND-DOWN</div>
+      <h3>Close it like a holiday</h3>
+      <p>Lights low, view on, nowhere to be. Maybe jot one photo or line about the day — the way you'd caption a trip. Tomorrow you wake up here again.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎒 Night-before prep (5 min)</h2>
+    <ul>
+      <li>Run the <b>hotel reset</b> so you wake up to a made room</li>
+      <li>Swimmers & towel by the door</li>
+      <li>Coffee/breakfast sorted so morning is effortless</li>
+      <li>Phone on Do Not Disturb till after the swim</li>
+    </ul>
+  </div>
+
+  <div class="card rainy">
+    <h2>☔ Four-seasons-in-one-day backup</h2>
+    <ul>
+      <li>Swap the explore for <b>indoor Melbourne</b> — NGV, ACMI, State Library dome, a laneway lunch</li>
+      <li>Long <b>spa afternoon</b> in — bath, masks, the works</li>
+      <li>A <b>rooftop bar</b> or the view from your own window with a wine</li>
+      <li>Cook a big, slow, holiday-style dinner and make it the event</li>
+    </ul>
+  </div>
+
+  <div class="foot">The trip isn't somewhere else. <b>You already live in the postcard.</b></div>
+</div>
