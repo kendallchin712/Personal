@@ -1,0 +1,345 @@
+<title>Everyday Holiday — Romanticize Your Life</title>
+<style>
+  :root {
+    --paper: #f7f5f0;
+    --panel: #fffdf9;
+    --ink: #221f1a;
+    --muted: #6f685c;
+    --hair: #e2ddd2;
+    --hair-strong: #c9c2b3;
+    --gold: #c9871f;
+    --gold-bg: #f6ead2;
+    --gold-ink: #7a5210;
+
+    --d1: #cf6b28; --d1-bg: #fae5d5;   /* slow time      */
+    --d2: #3a8a56; --d2-bg: #e3f0e8;   /* play tourist   */
+    --d3: #a9791f; --d3-bg: #f3ead4;   /* set the scene  */
+    --d4: #2a869f; --d4-bg: #ddeff3;   /* be here now    */
+    --d5: #bd4f70; --d5-bg: #f7e2e9;   /* main character */
+    --d6: #7351bd; --d6-bg: #ebe4f6;   /* say yes        */
+    --d7: #4a5bb0; --d7-bg: #e8eaf7;   /* rest, no guilt */
+    --d8: #515b6d; --d8-bg: #e6e9ef;   /* little luxuries*/
+
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16150f; --panel: #201e17; --ink: #ece7db; --muted: #9c9587;
+      --hair: #322f26; --hair-strong: #46422f;
+      --gold: #e6ab4a; --gold-bg: #3a2e12; --gold-ink: #f2cd85;
+      --d1:#ec9257; --d1-bg:#3a2213; --d2:#6fc98c; --d2-bg:#17301f;
+      --d3:#d7ab5c; --d3-bg:#332a12; --d4:#63bcd4; --d4-bg:#12303a;
+      --d5:#e185a3; --d5-bg:#381925; --d6:#a98be6; --d6-bg:#271d3b;
+      --d7:#8f9de6; --d7-bg:#20233b; --d8:#9aa3b5; --d8-bg:#23272f;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper:#f7f5f0; --panel:#fffdf9; --ink:#221f1a; --muted:#6f685c;
+    --hair:#e2ddd2; --hair-strong:#c9c2b3;
+    --gold:#c9871f; --gold-bg:#f6ead2; --gold-ink:#7a5210;
+    --d1:#cf6b28; --d1-bg:#fae5d5; --d2:#3a8a56; --d2-bg:#e3f0e8;
+    --d3:#a9791f; --d3-bg:#f3ead4; --d4:#2a869f; --d4-bg:#ddeff3;
+    --d5:#bd4f70; --d5-bg:#f7e2e9; --d6:#7351bd; --d6-bg:#ebe4f6;
+    --d7:#4a5bb0; --d7-bg:#e8eaf7; --d8:#515b6d; --d8-bg:#e6e9ef;
+  }
+  :root[data-theme="dark"] {
+    --paper:#16150f; --panel:#201e17; --ink:#ece7db; --muted:#9c9587;
+    --hair:#322f26; --hair-strong:#46422f;
+    --gold:#e6ab4a; --gold-bg:#3a2e12; --gold-ink:#f2cd85;
+    --d1:#ec9257; --d1-bg:#3a2213; --d2:#6fc98c; --d2-bg:#17301f;
+    --d3:#d7ab5c; --d3-bg:#332a12; --d4:#63bcd4; --d4-bg:#12303a;
+    --d5:#e185a3; --d5-bg:#381925; --d6:#a98be6; --d6-bg:#271d3b;
+    --d7:#8f9de6; --d7-bg:#20233b; --d8:#9aa3b5; --d8-bg:#23272f;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 72px; }
+
+  header.head { margin-bottom: 34px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 14px;
+  }
+  .goal {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(26px, 4.2vw, 40px); line-height: 1.18;
+    letter-spacing: -0.01em; text-wrap: balance; margin: 0;
+    max-width: 26ch;
+  }
+  .goal em { font-style: italic; color: var(--gold); }
+  .lede {
+    font-family: var(--serif); font-size: 16.5px; line-height: 1.55;
+    color: var(--muted); max-width: 60ch; margin: 18px 0 0;
+  }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: baseline;
+    margin-top: 20px; font-family: var(--mono); font-size: 12.5px;
+    color: var(--muted); letter-spacing: .02em;
+  }
+  .meta-row b { color: var(--ink); font-weight: 600; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 24px;
+  }
+  .legend span {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12.5px; color: var(--muted);
+  }
+  .legend i {
+    width: 11px; height: 11px; border-radius: 3px; display: inline-block;
+  }
+
+  /* ---- the chart ---- */
+  .board-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .board {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; min-width: 720px; margin: 8px auto 0;
+    background: var(--hair-strong); padding: 10px; border-radius: 14px;
+  }
+  .block {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 3px; background: var(--hair); padding: 3px; border-radius: 9px;
+  }
+  .cell {
+    background: var(--panel); border-radius: 5px;
+    padding: 7px 7px; min-height: 62px;
+    font-size: 10.7px; line-height: 1.28; color: var(--ink);
+    display: flex; align-items: center; text-align: left;
+    cursor: pointer; user-select: none;
+    border: 1px solid transparent;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .cell:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,.10); z-index: 2; }
+  .cell:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .cell.done { color: var(--muted); background: var(--paper); }
+  .cell.done .txt { text-decoration: line-through; text-decoration-thickness: 1.5px; opacity: .72; }
+
+  /* domain-tinted label (center of each block) */
+  .cell.label {
+    font-family: var(--serif); font-weight: 700;
+    font-size: 13.5px; line-height: 1.15; cursor: default;
+    justify-content: center; text-align: center;
+    flex-direction: column; gap: 3px;
+  }
+  .cell.label:hover { transform: none; box-shadow: none; }
+  .cell.label .emoji { font-size: 17px; }
+
+  /* central goal cell */
+  .cell.core {
+    background: var(--gold-bg); color: var(--gold-ink);
+    font-family: var(--serif); font-weight: 700; font-size: 12px;
+    justify-content: center; text-align: center; cursor: default;
+    border: 1px solid var(--gold); flex-direction: column; gap: 2px;
+  }
+  .cell.core:hover { transform: none; box-shadow: none; }
+  .cell.core .emoji { font-size: 20px; }
+  .cell.core small { font-family: var(--mono); font-weight: 400; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+
+  /* per-domain colouring */
+  .d1 .label { background: var(--d1-bg); color: var(--d1); }
+  .d2 .label { background: var(--d2-bg); color: var(--d2); }
+  .d3 .label { background: var(--d3-bg); color: var(--d3); }
+  .d4 .label { background: var(--d4-bg); color: var(--d4); }
+  .d5 .label { background: var(--d5-bg); color: var(--d5); }
+  .d6 .label { background: var(--d6-bg); color: var(--d6); }
+  .d7 .label { background: var(--d7-bg); color: var(--d7); }
+  .d8 .label { background: var(--d8-bg); color: var(--d8); }
+  .d1 { box-shadow: inset 0 0 0 2px var(--d1-bg); }
+  .d2 { box-shadow: inset 0 0 0 2px var(--d2-bg); }
+  .d3 { box-shadow: inset 0 0 0 2px var(--d3-bg); }
+  .d4 { box-shadow: inset 0 0 0 2px var(--d4-bg); }
+  .d5 { box-shadow: inset 0 0 0 2px var(--d5-bg); }
+  .d6 { box-shadow: inset 0 0 0 2px var(--d6-bg); }
+  .d7 { box-shadow: inset 0 0 0 2px var(--d7-bg); }
+  .d8 { box-shadow: inset 0 0 0 2px var(--d8-bg); }
+  /* center block's satellite labels get the matching domain tint */
+  .core-block .s1 { background: var(--d1-bg); color: var(--d1); }
+  .core-block .s2 { background: var(--d2-bg); color: var(--d2); }
+  .core-block .s3 { background: var(--d3-bg); color: var(--d3); }
+  .core-block .s4 { background: var(--d4-bg); color: var(--d4); }
+  .core-block .s5 { background: var(--d5-bg); color: var(--d5); }
+  .core-block .s6 { background: var(--d6-bg); color: var(--d6); }
+  .core-block .s7 { background: var(--d7-bg); color: var(--d7); }
+  .core-block .s8 { background: var(--d8-bg); color: var(--d8); }
+
+  .footer {
+    margin-top: 34px; display: flex; flex-wrap: wrap; gap: 16px;
+    align-items: center; justify-content: space-between;
+  }
+  .rule {
+    font-family: var(--serif); font-style: italic; font-size: 16px;
+    color: var(--ink);
+  }
+  .rule b { color: var(--gold); font-style: normal; }
+  .progress {
+    font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+    letter-spacing: .04em;
+  }
+  .progress b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .hint { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 6px; letter-spacing: .03em; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cell { transition: none; }
+  }
+  @media print {
+    body { background: #fff; }
+    .board { min-width: 0; }
+    .hint, .board-scroll { overflow: visible; }
+    .cell:hover { transform: none; box-shadow: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">Everyday Holiday · The romance-your-life grid</p>
+    <h1 class="goal">Live my off-hours like I'm <em>on holiday</em> — present, unhurried, and delighted by my own life.</h1>
+    <p class="lede">The trip isn't the point — the <em>mindset</em> is. On holiday you slow down, notice everything, say yes, and treat ordinary moments as special. None of that needs a plane ticket. This is the same 9-grid as the energy sprint, pointed at joy: 8 ways of being on holiday, 64 small things you can do after work and on weekends, right where you are.</p>
+    <div class="meta-row">
+      <span><b>Rhythm</b> Every evening & weekend</span>
+      <span><b>Dose</b> Pick 1–2 a day</span>
+      <span><b>Center</b> Everyday Holiday</span>
+      <span><b>Companion to</b> the Daily-Energy sprint</span>
+    </div>
+    <div class="legend" id="legend"></div>
+  </header>
+
+  <div class="board-scroll">
+    <div class="board" id="board"></div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="rule">The one rule: <b>romance the ordinary.</b></div>
+      <div class="hint">Tap any idea to mark it done · this working copy resets on reload</div>
+    </div>
+    <div class="progress"><b id="doneCount">0</b> / 64 ideas tried</div>
+  </div>
+</div>
+
+<script>
+  const CENTER = {
+    emoji: "🌴",
+    subs: [
+      {k:1, e:"🌅", n:"Slow Time"},   {k:2, e:"🗺️", n:"Play Tourist"}, {k:3, e:"🕯️", n:"Set the Scene"},
+      {k:8, e:"☕", n:"Little Luxuries"},{k:0, e:"",  n:"CORE"},         {k:4, e:"🌿", n:"Be Here Now"},
+      {k:7, e:"🛋️", n:"Rest, No Guilt"},{k:6, e:"🎈", n:"Say Yes"},      {k:5, e:"💃", n:"Main Character"}
+    ]
+  };
+
+  const BLOCKS = {
+    1: {e:"🌅", n:"Slow Time", a:[
+      "Wake 20 min early for a slow, screen-free start","Drink your coffee/tea somewhere beautiful — no scrolling","Leave one evening with nowhere to be",
+      "Take the scenic route home instead of rushing","One weekend morning: no alarm, no plan","Do a chore at holiday pace — slowly, on purpose",
+      "Step outside for golden hour on purpose","Wind down properly at night — don't just collapse"]},
+    2: {e:"🗺️", n:"Play Tourist", a:[
+      "Visit one spot in your city you've never been","Try the café or restaurant you always walk past","Take a new route — and actually look up",
+      "Do the 'tourist thing' locals skip (lookout, gallery)","Plan a nearby day trip — beach, park, town over","Find the best view in town and go watch sunset",
+      "Wander with no destination for an hour","Keep a running list of holiday-at-home spots to try"]},
+    3: {e:"🕯️", n:"Set the Scene", a:[
+      "Light a candle or diffuser in the evening","Fresh flowers on the table each week","Make a 'holiday' playlist and put it on",
+      "Warm lamps instead of the harsh overhead light","Reset one space so it feels like a hotel room","Open the windows — let in light and air",
+      "Use the nice glass / good plates for a normal meal","Keep a scent or fresh linen you genuinely love"]},
+    4: {e:"🌿", n:"Be Here Now", a:[
+      "Phone in another room for the first hour home","One meal a day eaten slowly, no screen","Notice three beautiful things each day",
+      "Take one photo of something ordinary-but-lovely","Sit and just watch/listen for five minutes","Feel one sensation fully — sun, water, breeze",
+      "Name what you're grateful for right now","Drop the productivity — this hour is just to be"]},
+    5: {e:"💃", n:"Main Character", a:[
+      "Dress nicely even when you're staying in","Wear the outfit/perfume you 'save for special'","Take yourself on a solo date",
+      "Capture the moment — photo, journal, or note","Make a plan with someone you love","Do your hair / self-care like it's a trip",
+      "Buy yourself flowers; toast an ordinary Tuesday","Review your week like a holiday photo album"]},
+    6: {e:"🎈", n:"Say Yes", a:[
+      "Say yes to one spontaneous invitation","Try one genuinely new thing this week","Do the 'why not' thing — swim, dance, sing",
+      "A last-minute mini-adventure, no plan needed","Break one ordinary routine on purpose","Finally book the thing you keep putting off",
+      "Follow a whim for a whole afternoon","Do something a little out of character"]},
+    7: {e:"🛋️", n:"Rest, No Guilt", a:[
+      "Read for pleasure — a whole chapter, no aim","Take a guilt-free nap or lie-in","Sit in the sun or a park doing nothing",
+      "A long bath or slow shower like a spa","One evening with zero to-do list","Let yourself be bored — don't fill the gap",
+      "Move slowly for a whole afternoon","Watch or listen to something purely for joy"]},
+    8: {e:"☕", n:"Little Luxuries", a:[
+      "A café breakfast or long, slow brunch","Cook one 'special' meal like you're away","Buy the treat you'd only get on a trip",
+      "Eat outside — balcony, park, or picnic","Have the proper dessert or fancy drink, no guilt","A weekend ritual: good coffee + fresh pastry",
+      "Set the table like you're a guest somewhere nice","Order the thing you'd order abroad"]}
+  };
+
+  // meta-grid position order -> which domain block (0 = core)
+  const ORDER = [1,2,3, 8,0,4, 7,6,5];
+
+  const board = document.getElementById("board");
+  let done = 0;
+  const doneCountEl = document.getElementById("doneCount");
+
+  function makeAction(text, dClass) {
+    const c = document.createElement("div");
+    c.className = "cell " + dClass;
+    c.tabIndex = 0;
+    c.setAttribute("role","checkbox");
+    c.setAttribute("aria-checked","false");
+    const s = document.createElement("span");
+    s.className = "txt"; s.textContent = text;
+    c.appendChild(s);
+    const toggle = () => {
+      const now = c.classList.toggle("done");
+      c.setAttribute("aria-checked", now ? "true":"false");
+      done += now ? 1 : -1;
+      doneCountEl.textContent = done;
+    };
+    c.addEventListener("click", toggle);
+    c.addEventListener("keydown", e => { if(e.key===" "||e.key==="Enter"){e.preventDefault();toggle();} });
+    return c;
+  }
+
+  ORDER.forEach(id => {
+    const block = document.createElement("div");
+    if (id === 0) {
+      block.className = "block core-block";
+      CENTER.subs.forEach((s, i) => {
+        if (s.k === 0) {
+          const core = document.createElement("div");
+          core.className = "cell core";
+          core.innerHTML = `<span class="emoji">🌴</span><span>Everyday Holiday</span><small>the center</small>`;
+          block.appendChild(core);
+        } else {
+          const lab = document.createElement("div");
+          lab.className = "cell label s" + s.k;
+          lab.innerHTML = `<span class="emoji">${s.e}</span><span>${s.n}</span>`;
+          block.appendChild(lab);
+        }
+      });
+    } else {
+      block.className = "block d" + id;
+      const b = BLOCKS[id];
+      const cells = [];
+      // 8 actions + 1 center label, label goes in the middle (index 4)
+      let ai = 0;
+      for (let i = 0; i < 9; i++) {
+        if (i === 4) {
+          const lab = document.createElement("div");
+          lab.className = "cell label";
+          lab.innerHTML = `<span class="emoji">${b.e}</span><span>${b.n}</span>`;
+          cells.push(lab);
+        } else {
+          cells.push(makeAction(b.a[ai++], "d" + id));
+        }
+      }
+      cells.forEach(c => block.appendChild(c));
+    }
+    board.appendChild(block);
+  });
+
+  // legend
+  const legend = document.getElementById("legend");
+  [1,2,3,4,5,6,7,8].forEach(id => {
+    const b = BLOCKS[id];
+    const s = document.createElement("span");
+    s.innerHTML = `<i style="background:var(--d${id})"></i>${b.e} ${b.n}`;
+    legend.appendChild(s);
+  });
+</script>
