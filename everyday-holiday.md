@@ -1,4 +1,4 @@
-# Everyday Holiday — Romanticize Your Life
+# Everyday Holiday — Romanticize Your Life (Melbourne edition)
 
 **Started:** 2026-08-10 · **Rhythm:** every evening & weekend · **Companion to:** the Daily-Energy Sprint
 
@@ -31,18 +31,18 @@ The trip was never the point — the *mindset* was. On holiday you slow down, no
 - [ ] Take the scenic route home instead of rushing
 - [ ] One weekend morning: no alarm, no plan
 - [ ] Do a chore at holiday pace — slowly, on purpose
-- [ ] Step outside for golden hour on purpose
+- [ ] Golden hour along the Yarra or a lap of the Tan
 - [ ] Wind down properly at night — don't just collapse
 
 ## 2. 🗺️ Play Tourist
-- [ ] Visit one spot in your city you've never been
-- [ ] Try the café or restaurant you always walk past
-- [ ] Take a new route — and actually look up
-- [ ] Do the "tourist thing" locals skip (lookout, gallery)
-- [ ] Plan a nearby day trip — beach, park, the town over
-- [ ] Find the best view in town and go watch sunset
-- [ ] Wander with no destination for an hour
-- [ ] Keep a running list of holiday-at-home spots to try
+- [ ] Lose an hour in the laneways — Hosier, Centre Place, AC/DC Lane
+- [ ] Free art at the NGV, then coffee across at the gardens
+- [ ] Watch the little penguins at St Kilda breakwater at dusk
+- [ ] Sunset from a rooftop bar or Eureka Skydeck
+- [ ] Graze through Queen Vic Market (or the Night Market)
+- [ ] Ride the free City Circle tram and just watch the city
+- [ ] Wander a new pocket — Fitzroy, Yarraville, Williamstown
+- [ ] Day trip: Great Ocean Rd, Mornington hot springs, or Yarra Valley
 
 ## 3. 🕯️ Set the Scene
 - [ ] Light a candle or diffuser in the evening
@@ -71,14 +71,14 @@ The trip was never the point — the *mindset* was. On holiday you slow down, no
 - [ ] Capture the moment — photo, journal, or note
 - [ ] Make a plan with someone you love
 - [ ] Do your hair / self-care like it's a trip
-- [ ] Buy yourself flowers; toast an ordinary Tuesday
+- [ ] Buy yourself flowers at Vic Market; toast an ordinary Tuesday
 - [ ] Review your week like a holiday photo album
 
 ## 6. 🎈 Say Yes
 - [ ] Say yes to one spontaneous invitation
 - [ ] Try one genuinely new thing this week
 - [ ] Do the "why not" thing — swim, dance, sing
-- [ ] A last-minute mini-adventure, no plan needed
+- [ ] A spontaneous dip — St Kilda, Half Moon Bay, or Brighton boxes
 - [ ] Break one ordinary routine on purpose
 - [ ] Finally book the thing you keep putting off
 - [ ] Follow a whim for a whole afternoon
@@ -87,7 +87,7 @@ The trip was never the point — the *mindset* was. On holiday you slow down, no
 ## 7. 🛋️ Rest, No Guilt
 - [ ] Read for pleasure — a whole chapter, no aim
 - [ ] Take a guilt-free nap or lie-in
-- [ ] Sit in the sun or a park doing nothing
+- [ ] Sit in the Botanic Gardens or Carlton Gardens, doing nothing
 - [ ] A long bath or slow shower like a spa
 - [ ] One evening with zero to-do list
 - [ ] Let yourself be bored — don't fill the gap
@@ -95,15 +95,15 @@ The trip was never the point — the *mindset* was. On holiday you slow down, no
 - [ ] Watch or listen to something purely for joy
 
 ## 8. ☕ Little Luxuries
-- [ ] A café breakfast or long, slow brunch
+- [ ] A long laneway brunch — you're in the coffee capital, use it
 - [ ] Cook one "special" meal like you're away
 - [ ] Buy the treat you'd only get on a trip
-- [ ] Eat outside — balcony, park, or picnic
+- [ ] Picnic in the Fitzroy or Botanic Gardens
 - [ ] Have the proper dessert or fancy drink, no guilt
-- [ ] A weekend ritual: good coffee + fresh pastry
+- [ ] Weekend ritual: single-origin coffee + a bakery pastry (Lune if you'll queue)
 - [ ] Set the table like you're a guest somewhere nice
 - [ ] Order the thing you'd order abroad
 
 ---
 
-*The trip isn't somewhere else. You already live somewhere someone else would save up to visit. Start acting like the guest who's thrilled to be here.*
+*The trip isn't somewhere else. People fly across the world to do a weekend in Melbourne — the laneways, the coffee, the coast an hour away. You live here. Start acting like the guest who's thrilled to be here.*
