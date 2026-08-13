@@ -1,0 +1,325 @@
+<title>Money Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --ground: #f6f8f7;
+    --surface: #ffffff;
+    --surface-2: #eef2f0;
+    --ink: #14201c;
+    --muted: #5b6b65;
+    --faint: #8a9a93;
+    --line: #dde5e1;
+    --accent: #0e7c66;
+    --accent-soft: #d9ede7;
+    --good: #1c8a5b;
+    --good-soft: #dcefe4;
+    --warn: #9a6a12;
+    --warn-soft: #f5e8cf;
+    --crit: #bd3f38;
+    --crit-soft: #f6dcd9;
+    --shadow: 0 1px 2px rgba(20,32,28,.04), 0 6px 20px rgba(20,32,28,.05);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --ground: #0d1512;
+      --surface: #15201c;
+      --surface-2: #1d2b26;
+      --ink: #e7efeb;
+      --muted: #95a7a0;
+      --faint: #6a7c75;
+      --line: #263531;
+      --accent: #45c2a2;
+      --accent-soft: #16302a;
+      --good: #43be86;
+      --good-soft: #142c20;
+      --warn: #d5a34a;
+      --warn-soft: #2f2712;
+      --crit: #e06a62;
+      --crit-soft: #331b19;
+      --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 26px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0d1512;
+    --surface: #15201c;
+    --surface-2: #1d2b26;
+    --ink: #e7efeb;
+    --muted: #95a7a0;
+    --faint: #6a7c75;
+    --line: #263531;
+    --accent: #45c2a2;
+    --accent-soft: #16302a;
+    --good: #43be86;
+    --good-soft: #142c20;
+    --warn: #d5a34a;
+    --warn-soft: #2f2712;
+    --crit: #e06a62;
+    --crit-soft: #331b19;
+    --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 26px rgba(0,0,0,.28);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-feature-settings: "kern" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 28px 20px 64px; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--faint); margin: 0 0 10px;
+  }
+
+  /* Masthead */
+  header.mast { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  header.mast h1 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+  header.mast .asof { font-size: 12.5px; color: var(--muted); }
+
+  /* Hero */
+  .hero {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 26px 26px 24px; box-shadow: var(--shadow); margin-bottom: 22px;
+  }
+  .hero .figure { font-size: clamp(40px, 9vw, 58px); font-weight: 760; letter-spacing: -.025em; line-height: 1; margin: 2px 0 4px; }
+  .hero .cur { font-size: .42em; font-weight: 600; color: var(--muted); letter-spacing: 0; vertical-align: .28em; margin-left: 6px; }
+  .hero .sub { font-size: 13.5px; color: var(--muted); margin: 0; }
+  .hero .sub b { color: var(--ink); font-weight: 650; }
+
+  .compbar { display: flex; height: 12px; border-radius: 7px; overflow: hidden; margin: 22px 0 14px; background: var(--surface-2); }
+  .compbar span { display: block; height: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px 22px; }
+  .legend div { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+  .legend .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .legend b { color: var(--ink); font-weight: 650; }
+
+  .seg-ret { background: var(--accent); }
+  .seg-cash { background: var(--good); }
+  .seg-debt { background: var(--crit); }
+
+  /* Section */
+  section { margin-top: 30px; }
+  .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .sec-head h2 { font-size: 15px; font-weight: 700; letter-spacing: -.005em; margin: 0; }
+  .sec-head .hint { font-size: 12px; color: var(--faint); }
+
+  /* Account groups */
+  .group { margin-bottom: 8px; }
+  .group-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--muted); text-transform: uppercase; margin: 18px 0 10px; }
+  .group-label .flag { font-size: 15px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 13px;
+    padding: 15px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 3px;
+  }
+  .card .name { font-size: 12.5px; color: var(--muted); font-weight: 550; }
+  .card .bal { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .card .bal.neg { color: var(--crit); }
+  .card .native { font-size: 11.5px; color: var(--faint); }
+  .chip {
+    align-self: flex-start; margin-top: 8px; font-size: 11px; font-weight: 650; letter-spacing: .01em;
+    padding: 3px 9px; border-radius: 999px; line-height: 1.35;
+  }
+  .chip.good { background: var(--good-soft); color: var(--good); }
+  .chip.warn { background: var(--warn-soft); color: var(--warn); }
+  .chip.crit { background: var(--crit-soft); color: var(--crit); }
+  .chip.neu  { background: var(--surface-2); color: var(--muted); }
+
+  /* Alert */
+  .alert {
+    background: var(--crit-soft); border: 1px solid color-mix(in srgb, var(--crit) 30%, transparent);
+    border-radius: 14px; padding: 18px 20px;
+  }
+  .alert h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--crit); display: flex; align-items: center; gap: 8px; }
+  .alert p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink); }
+  .alert .flow { font-size: 13px; color: var(--ink); margin-top: 12px; padding: 12px 14px; background: var(--surface); border-radius: 10px; border: 1px solid var(--line); }
+  .alert .flow .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .alert .arrow { color: var(--crit); font-weight: 700; }
+  .alert .ok { color: var(--good); font-weight: 650; }
+
+  /* Actions */
+  ol.actions { list-style: none; counter-reset: a; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  ol.actions li {
+    counter-increment: a; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 16px 14px 15px; box-shadow: var(--shadow); display: grid; grid-template-columns: auto 1fr auto; gap: 4px 14px; align-items: start;
+  }
+  ol.actions .idx {
+    grid-row: 1 / span 2; width: 26px; height: 26px; border-radius: 8px; background: var(--accent-soft); color: var(--accent);
+    font-weight: 700; font-size: 13px; display: grid; place-items: center; margin-top: 1px;
+  }
+  ol.actions .t { font-size: 14px; font-weight: 650; letter-spacing: -.005em; }
+  ol.actions .d { grid-column: 2 / span 2; font-size: 12.5px; color: var(--muted); }
+  .prio { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+  .prio.crit { background: var(--crit-soft); color: var(--crit); }
+  .prio.high { background: var(--warn-soft); color: var(--warn); }
+  .prio.med  { background: var(--accent-soft); color: var(--accent); }
+  .prio.low  { background: var(--surface-2); color: var(--muted); }
+
+  /* Two-up */
+  .twoup { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); }
+  .panel h3 { margin: 0 0 4px; font-size: 14px; font-weight: 700; }
+  .panel .lead { font-size: 26px; font-weight: 730; letter-spacing: -.02em; margin: 6px 0 2px; }
+  .panel .lead small { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  .panel p { font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+  .waterfall { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+  .wf { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+  .wf:last-child { border-bottom: 0; }
+  .wf .l { color: var(--muted); }
+  .wf .v { font-weight: 650; }
+  .wf.tot { border-top: 1.5px solid var(--line); border-bottom: 0; margin-top: 2px; padding-top: 9px; }
+  .wf.tot .l, .wf.tot .v { color: var(--accent); font-weight: 700; }
+
+  /* Blanks */
+  .blanks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .blank { border: 1.5px dashed var(--line); border-radius: 14px; padding: 16px 18px; background: color-mix(in srgb, var(--surface) 60%, transparent); }
+  .blank .q { font-size: 13.5px; font-weight: 650; margin: 0 0 4px; }
+  .blank .h { font-size: 12.5px; color: var(--muted); margin: 0; }
+  .blank .tag { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+
+  footer { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--faint); }
+
+  @media (max-width: 620px) {
+    .twoup, .blanks { grid-template-columns: 1fr; }
+    ol.actions li { grid-template-columns: auto 1fr; }
+    ol.actions .prio { grid-column: 2; justify-self: start; margin-top: 2px; }
+    ol.actions .d { grid-column: 1 / span 2; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <h1>Money Map</h1>
+    <span class="asof num">Kendall Chin · as at 13 Aug 2026 · all figures AUD</span>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">Total net worth</p>
+    <div class="figure num">$58,487<span class="cur">AUD</span></div>
+    <p class="sub"><b>~$50,700 locked in retirement</b> · <b>~$7,980 accessible cash</b> · essentially no debt</p>
+
+    <div class="compbar" role="img" aria-label="Composition: 87% retirement, 13% accessible cash, small NZ debt">
+      <span class="seg-ret" style="width:86.7%"></span>
+      <span class="seg-cash" style="width:13.7%"></span>
+      <span class="seg-debt" style="width:0.4%"></span>
+    </div>
+    <div class="legend">
+      <div><span class="dot seg-ret"></span>Retirement <b class="num">$50,733</b></div>
+      <div><span class="dot seg-cash"></span>Accessible cash <b class="num">$7,979</b></div>
+      <div><span class="dot seg-debt"></span>NZ card (net) <b class="num">−$224</b></div>
+    </div>
+  </div>
+
+  <!-- ACCOUNTS -->
+  <section>
+    <div class="sec-head"><h2>Accounts</h2><span class="hint">grouped by where the money lives</span></div>
+
+    <div class="group">
+      <div class="group-label"><span class="flag">🇦🇺</span> Australia · Up + AustralianSuper</div>
+      <div class="cards">
+        <div class="card"><span class="name">Up — Spending</span><span class="bal num">$1,540</span><span class="chip warn">Thin buffer · bridges to 10 Sep</span></div>
+        <div class="card"><span class="name">Up — Emergency fund</span><span class="bal num">$4,269</span><span class="chip good">Building · aim $8–10k</span></div>
+        <div class="card"><span class="name">Up — Rent saver</span><span class="bal num">$2,140</span><span class="chip neu">Covers ~1 month rent</span></div>
+        <div class="card"><span class="name">AustralianSuper</span><span class="bal num">$8,607</span><span class="chip good">+11% employer · check for 12%</span></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label"><span class="flag">🌐</span> Cross-border · Wise</div>
+      <div class="cards">
+        <div class="card"><span class="name">Wise (multi-currency)</span><span class="bal num">$30</span><span class="chip neu">Pass-through only, not savings</span></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label"><span class="flag">🇳🇿</span> New Zealand · BNZ + KiwiSaver</div>
+      <div class="cards">
+        <div class="card"><span class="name">BNZ savings pots</span><span class="bal num">$41</span><span class="native num">NZ$50.76 · BLOW / Fire Extinguisher / Insurance</span><span class="chip warn">Near empty</span></div>
+        <div class="card"><span class="name">BNZ Advantage Visa</span><span class="bal num neg">−$265</span><span class="native num">NZ$330.44 owed · 20.95% p.a.</span><span class="chip crit">Pay now · min due 4 Aug</span></div>
+        <div class="card"><span class="name">KiwiSaver (Simplicity)</span><span class="bal num">$42,126</span><span class="native num">NZ$52,525.97 · since Dec 2020</span><span class="chip good">+8.68% p.a. · leave it</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAK -->
+  <section>
+    <div class="sec-head"><h2>The one real money leak</h2></div>
+    <div class="alert">
+      <h3>⚠︎ You run an AUD life through a NZD credit card</h3>
+      <p>Nearly all your card spending is in Melbourne, but it's billed in NZD — so every purchase pays a <b>~2.75% foreign-currency fee</b>, and to clear the card you convert AUD→NZD through Wise (another fee). That's paying FX <b>twice</b>, before the <b>20.95%</b> interest whenever a balance carries. Roughly <b>$400–500 a year</b> for no benefit.</p>
+      <div class="flow">
+        <div class="row"><span>$100 dinner on BNZ card</span><span class="arrow">→</span><span class="num">≈ NZ$125 + NZ$2.75 fee</span><span class="arrow">→</span><span>convert AUD→NZD to pay it</span></div>
+        <div class="row" style="margin-top:8px"><span>Same $100 on your Up card</span><span class="arrow ok">→</span><span class="ok num">$100 · zero fees</span></div>
+      </div>
+      <p style="margin-top:12px"><b>Fix:</b> run daily spending on the Up card, keep the BNZ card for when you're physically in NZ, and clear the NZ$330 now.</p>
+    </div>
+  </section>
+
+  <!-- ACTIONS -->
+  <section>
+    <div class="sec-head"><h2>What to do, in order</h2></div>
+    <ol class="actions">
+      <li><span class="idx">1</span><span class="t">Clear the BNZ Visa (NZ$330) and stop using it for AUD</span><span class="prio crit">Critical</span><span class="d">Kills 20.95% interest + the double-FX in one move. It crept from NZ$20 to NZ$330 in three weeks — cap it.</span></li>
+      <li><span class="idx">2</span><span class="t">Route all Australian spending through the Up card</span><span class="prio high">High</span><span class="d">Zero foreign fees. This is the habit swap that makes action 1 stick.</span></li>
+      <li><span class="idx">3</span><span class="t">On the monthly cycle, put full rent + your bill share into the Rent saver</span><span class="prio high">High</span><span class="d">Your plan already. The old $1,000 split under-funds $1,861 rent; full-funding closes the gap for good.</span></li>
+      <li><span class="idx">4</span><span class="t">Build one month of AUD float, then grow Emergency to $8–10k</span><span class="prio med">Medium</span><span class="d">A real buffer means the card is never a payday bridge again — the core fix for contractor cashflow.</span></li>
+      <li><span class="idx">5</span><span class="t">Confirm your super rate — SG rose to 12% on 1 Jul 2025</span><span class="prio med">Medium</span><span class="d">You're getting 11%. If that's meant to be the guarantee, you may be owed the extra 1%.</span></li>
+      <li><span class="idx">6</span><span class="t">Keep cooking</span><span class="prio low">Low</span><span class="d">Your Aug burn was ~$237/wk vs a ~$645/wk yearly average — worth ~$1,600/month. This funds everything above.</span></li>
+    </ol>
+  </section>
+
+  <!-- CASHFLOW + SPLURGE -->
+  <section>
+    <div class="sec-head"><h2>Monthly cycle &amp; the splurge line</h2></div>
+    <div class="twoup">
+      <div class="panel">
+        <h3>Your pay cycle</h3>
+        <p class="lead num">$4,500 <small>net / month</small></p>
+        <p style="margin-bottom:10px">Bedford Lane · $290/day · invoiced 1st, paid the 10th (via Hnry, single client).</p>
+        <div class="waterfall num">
+          <div class="wf"><span class="l">Net income (10th)</span><span class="v">$4,500</span></div>
+          <div class="wf"><span class="l">→ Rent + bills saver</span><span class="v">−$2,160</span></div>
+          <div class="wf"><span class="l">→ Emergency fund</span><span class="v">−$600</span></div>
+          <div class="wf tot"><span class="l">Living + discretionary</span><span class="v">$1,740</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>How much can I splurge?</h3>
+        <p class="lead num">~$300 <small>this Afterpay sale</small></p>
+        <p>Capped by your <b>thin buffer</b> bridging to 10 Sep — not your income. Pay in full, <b>not</b> on the BNZ card. If you use Afterpay, only ~2 instalments land before payday.</p>
+        <p style="margin-top:12px"><b style="color:var(--accent)">~$500–700/month</b> once the clean cycle runs and you've built a month of float — that's your true recurring discretionary room while the cooking holds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLANKS -->
+  <section>
+    <div class="sec-head"><h2>Two blanks that shape everything</h2><span class="hint">the only things I still need from you</span></div>
+    <div class="blanks">
+      <div class="blank">
+        <span class="tag">Direction</span>
+        <p class="q">What is the money actually for?</p>
+        <p class="h">Moving home to NZ, a house deposit, travel, or just a buffer? This decides whether you aggressively clear debt and hoard cash, or invest the surplus.</p>
+      </div>
+      <div class="blank">
+        <span class="tag">Safety net</span>
+        <p class="q">Do you have income protection?</p>
+        <p class="h">Single client, no sick leave — if you couldn't work, the income stops dead. This is the one insurance that matters most for you right now.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Snapshot built from your Up statements, BNZ Visa statements, Wise, KiwiSaver &amp; AustralianSuper. NZD converted at ~0.80. Figures rounded; not financial advice — a picture to act from.
+  </footer>
+
+</div>
