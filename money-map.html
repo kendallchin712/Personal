@@ -186,6 +186,18 @@
   .wf.tot { border-top: 1.5px solid var(--line); border-bottom: 0; margin-top: 2px; padding-top: 9px; }
   .wf.tot .l, .wf.tot .v { color: var(--accent); font-weight: 700; }
 
+  /* Goal tracker */
+  .goalhead { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+  .goalhead .amt { font-size: 25px; font-weight: 730; letter-spacing: -.02em; }
+  .goalhead .amt small { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  .goaltrack { position: relative; height: 13px; border-radius: 7px; background: var(--surface-2); overflow: hidden; margin: 13px 0 16px; }
+  .goaltrack > span { display: block; height: 100%; background: linear-gradient(90deg, var(--good), var(--accent)); border-radius: 7px; }
+  .goalrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .goalrow > div { display: flex; flex-direction: column; gap: 3px; }
+  .goalrow .gl { font-size: 10.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+  .goalrow .gv { font-size: 14px; font-weight: 650; }
+  @media (max-width: 620px) { .goalrow { grid-template-columns: 1fr 1fr; gap: 12px; } }
+
   /* Blanks */
   .blanks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .blank { border: 1.5px dashed var(--line); border-radius: 14px; padding: 16px 18px; background: color-mix(in srgb, var(--surface) 60%, transparent); }
@@ -235,7 +247,7 @@
       <div class="group-label"><span class="flag">🇦🇺</span> Australia · Up</div>
       <div class="cards">
         <div class="card"><span class="name">Up — Spending</span><span class="bal num">$1,540</span><span class="chip warn">Thin buffer · bridges to 10 Sep</span></div>
-        <div class="card"><span class="name">Up — Emergency fund</span><span class="bal num">$4,269</span><span class="chip good">Building · aim $8–10k</span></div>
+        <div class="card"><span class="name">Up — Emergency fund</span><span class="bal num">$4,269</span><span class="chip good">36% to $12k goal</span></div>
         <div class="card"><span class="name">Up — Rent saver</span><span class="bal num">$2,140</span><span class="chip neu">Covers ~1 month rent</span></div>
       </div>
     </div>
@@ -293,7 +305,7 @@
       <li><span class="idx">1</span><span class="t">Clear the BNZ Visa (NZ$330) and stop using it for AUD</span><span class="prio crit">Critical</span><span class="d">Kills 20.95% interest + the double-FX in one move. It crept from NZ$20 to NZ$330 in three weeks — cap it.</span></li>
       <li><span class="idx">2</span><span class="t">Route all Australian spending through the Up card</span><span class="prio high">High</span><span class="d">Zero foreign fees. This is the habit swap that makes action 1 stick.</span></li>
       <li><span class="idx">3</span><span class="t">On the monthly cycle, put full rent + your bill share into the Rent saver</span><span class="prio high">High</span><span class="d">Your plan already. The old $1,000 split under-funds $1,861 rent; full-funding closes the gap for good.</span></li>
-      <li><span class="idx">4</span><span class="t">Build one month of AUD float, then grow Emergency to $8–10k</span><span class="prio med">Medium</span><span class="d">A real buffer means the card is never a payday bridge again — the core fix for contractor cashflow.</span></li>
+      <li><span class="idx">4</span><span class="t">Automate ~$1,000/month into the Emergency fund → 4 months ($12k)</span><span class="prio med">Medium</span><span class="d">You're 36% there. A Pay Split on the 10th, after rent + bills, reaches the target ~Apr 2027 — then redirect it to Sharesies.</span></li>
       <li><span class="idx">5</span><span class="t">Confirm your super rate — SG rose to 12% on 1 Jul 2025</span><span class="prio med">Medium</span><span class="d">You're getting 11%. If that's meant to be the guarantee, you may be owed the extra 1%.</span></li>
       <li><span class="idx">6</span><span class="t">Keep cooking</span><span class="prio low">Low</span><span class="d">Your Aug burn was ~$237/wk vs a ~$645/wk yearly average — worth ~$1,600/month. This funds everything above.</span></li>
     </ol>
@@ -323,19 +335,36 @@
     </div>
   </section>
 
+  <!-- GOAL -->
+  <section>
+    <div class="sec-head"><h2>Emergency fund goal</h2><span class="hint">4 months of essentials · your safety net as a single-client contractor</span></div>
+    <div class="panel">
+      <div class="goalhead">
+        <span class="amt num">$4,269 <small>of $12,000 target</small></span>
+        <span class="chip good">36% there</span>
+      </div>
+      <div class="goaltrack" role="img" aria-label="Emergency fund 36 percent of the way to the 12,000 dollar target"><span style="width:35.6%"></span></div>
+      <div class="goalrow num">
+        <div><span class="gl">Basis</span><span class="gv">4 × $3,000 essentials</span></div>
+        <div><span class="gl">Still to save</span><span class="gv">$7,731</span></div>
+        <div><span class="gl">At $1,000/mo, full by</span><span class="gv">~Apr 2027</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- BLANKS -->
   <section>
-    <div class="sec-head"><h2>Two blanks that shape everything</h2><span class="hint">the only things I still need from you</span></div>
+    <div class="sec-head"><h2>One blank left</h2><span class="hint">the only thing I still need from you</span></div>
     <div class="blanks">
       <div class="blank">
-        <span class="tag">Direction</span>
-        <p class="q">What is the money actually for?</p>
-        <p class="h">Moving home to NZ, a house deposit, travel, or just a buffer? This decides whether you aggressively clear debt and hoard cash, or invest the surplus.</p>
+        <span class="tag">Goal · set</span>
+        <p class="q">✓ Build the emergency fund to 4 months ($12k)</p>
+        <p class="h">Then redirect the ~$1,000/month into Sharesies. Tracked above — you're 36% there.</p>
       </div>
       <div class="blank">
         <span class="tag">Safety net</span>
         <p class="q">Do you have income protection?</p>
-        <p class="h">Single client, no sick leave — if you couldn't work, the income stops dead. This is the one insurance that matters most for you right now.</p>
+        <p class="h">Single client, no sick leave — if you couldn't work, the income stops dead. Even a 4-month fund only buys 4 months; this covers the longer tail.</p>
       </div>
     </div>
   </section>
