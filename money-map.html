@@ -204,6 +204,9 @@
   .blank .q { font-size: 13.5px; font-weight: 650; margin: 0 0 4px; }
   .blank .h { font-size: 12.5px; color: var(--muted); margin: 0; }
   .blank .tag { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+  .netnote { margin: 14px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--muted); background: var(--surface-2); border-left: 3px solid var(--warn); border-radius: 8px; padding: 12px 15px; }
+  .netnote b { color: var(--ink); font-weight: 650; }
+  .card .bal .per { font-size: 13px; color: var(--muted); font-weight: 600; }
 
   footer { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--faint); }
 
@@ -278,7 +281,7 @@
       </div>
       <div class="cards">
         <div class="card"><span class="name">KiwiSaver (Simplicity) 🇳🇿</span><span class="bal num">$42,126</span><span class="native num">NZ$52,525.97 · +8.68% p.a. since 2020</span><span class="chip good">Locked till retirement</span></div>
-        <div class="card"><span class="name">AustralianSuper 🇦🇺</span><span class="bal num">$8,607</span><span class="native num">+11% employer · check it's 12%</span><span class="chip good">Locked till retirement</span></div>
+        <div class="card"><span class="name">AustralianSuper 🇦🇺</span><span class="bal num">$8,610</span><span class="native num">+11% employer · holds your insurance</span><span class="chip good">Locked till retirement</span></div>
         <div class="card"><span class="name">Sharesies 🇳🇿</span><span class="bal num">$4,279</span><span class="native num">NZ$5,335.46 · +51.96% total return</span><span class="chip good">Investing · leave it</span></div>
       </div>
     </div>
@@ -352,21 +355,15 @@
     </div>
   </section>
 
-  <!-- BLANKS -->
+  <!-- SAFETY NET -->
   <section>
-    <div class="sec-head"><h2>One blank left</h2><span class="hint">the only thing I still need from you</span></div>
-    <div class="blanks">
-      <div class="blank">
-        <span class="tag">Goal · set</span>
-        <p class="q">✓ Build the emergency fund to 4 months ($12k)</p>
-        <p class="h">Then redirect the ~$1,000/month into Sharesies. Tracked above — you're 36% there.</p>
-      </div>
-      <div class="blank">
-        <span class="tag">Safety net</span>
-        <p class="q">Do you have income protection?</p>
-        <p class="h">Single client, no sick leave — if you couldn't work, the income stops dead. Even a 4-month fund only buys 4 months; this covers the longer tail.</p>
-      </div>
+    <div class="sec-head"><h2>Safety net — covered</h2><span class="hint">insurance held inside AustralianSuper</span></div>
+    <div class="cards">
+      <div class="card"><span class="name">Income Protection</span><span class="bal num">$2,600<span class="per">/mo</span></span><span class="native num">≈ 87% of your $3,000 essentials</span><span class="chip warn">Check waiting + benefit period</span></div>
+      <div class="card"><span class="name">TPD cover</span><span class="bal num">$60,000</span><span class="native">Lump sum · permanent disability</span><span class="chip good">In place</span></div>
+      <div class="card"><span class="name">Death cover</span><span class="bal num">$182,000</span><span class="native">Lump sum</span><span class="chip good">In place</span></div>
     </div>
+    <p class="netnote">⚠︎ Income Protection covers <b>illness or injury only</b> — <b>not</b> the Bedford Lane contract ending. If the work dried up, IP pays nothing and your emergency fund is the sole cushion — which is exactly why the 4-month target matters. Two nets, two different disasters: the <b>fund</b> covers client-loss + the IP waiting period; <b>IP</b> covers the can't-work tail beyond 4 months. Premiums come out of your super, so glance at “Manage insurance” to confirm the waiting &amp; benefit periods.</p>
   </section>
 
   <footer>
