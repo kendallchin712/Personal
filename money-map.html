@@ -91,6 +91,8 @@
   .hero .cur { font-size: .42em; font-weight: 600; color: var(--muted); letter-spacing: 0; vertical-align: .28em; margin-left: 6px; }
   .hero .sub { font-size: 13.5px; color: var(--muted); margin: 0; }
   .hero .sub b { color: var(--ink); font-weight: 650; }
+  .hero .totalline { margin: 16px 0 0; font-size: 12.5px; color: var(--muted); padding-top: 14px; border-top: 1px solid var(--line); }
+  .hero .totalline b { color: var(--ink); font-weight: 700; }
 
   .compbar { display: flex; height: 12px; border-radius: 7px; overflow: hidden; margin: 22px 0 14px; background: var(--surface-2); }
   .compbar span { display: block; height: 100%; }
@@ -162,6 +164,13 @@
   .prio.med  { background: var(--accent-soft); color: var(--accent); }
   .prio.low  { background: var(--surface-2); color: var(--muted); }
 
+  /* Vault (long-term, hands-off) */
+  .vault { background: var(--surface-2); border: 1px dashed var(--line); border-radius: 14px; padding: 16px 18px 18px; }
+  .vault .vhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 13px; }
+  .vault .vhead .vt { font-size: 12.5px; font-weight: 700; letter-spacing: .02em; color: var(--muted); }
+  .vault .vhead .vv { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .vault .card { background: color-mix(in srgb, var(--surface) 55%, transparent); }
+
   /* Two-up */
   .twoup { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); }
@@ -203,33 +212,31 @@
 
   <!-- HERO -->
   <div class="hero">
-    <p class="eyebrow">Total net worth</p>
-    <div class="figure num">$58,487<span class="cur">AUD</span></div>
-    <p class="sub"><b>~$50,700 locked in retirement</b> · <b>~$7,980 accessible cash</b> · essentially no debt</p>
+    <p class="eyebrow">Day-to-day money · what you actually spend from</p>
+    <div class="figure num">$7,754<span class="cur">AUD</span></div>
+    <p class="sub">Every splurge, buffer and card decision runs on <b>this</b> number. Your long-term wealth is walled off — out of sight, hands off.</p>
 
-    <div class="compbar" role="img" aria-label="Composition: 87% retirement, 13% accessible cash, small NZ debt">
-      <span class="seg-ret" style="width:86.7%"></span>
-      <span class="seg-cash" style="width:13.7%"></span>
-      <span class="seg-debt" style="width:0.4%"></span>
+    <div class="compbar" role="img" aria-label="Day-to-day money is 12% of net worth; long-term hands-off wealth is 88%">
+      <span class="seg-cash" style="width:12.4%"></span>
+      <span class="seg-ret" style="width:87.6%"></span>
     </div>
     <div class="legend">
-      <div><span class="dot seg-ret"></span>Retirement <b class="num">$50,733</b></div>
-      <div><span class="dot seg-cash"></span>Accessible cash <b class="num">$7,979</b></div>
-      <div><span class="dot seg-debt"></span>NZ card (net) <b class="num">−$224</b></div>
+      <div><span class="dot seg-cash"></span>Day-to-day <b class="num">$7,754</b></div>
+      <div><span class="dot seg-ret"></span>Long-term · hands-off <b class="num">$55,012</b></div>
     </div>
+    <p class="totalline">Total net worth <b class="num">$62,766 AUD</b> — you operate on ~12% of it and let the other ~88% grow untouched.</p>
   </div>
 
   <!-- ACCOUNTS -->
   <section>
-    <div class="sec-head"><h2>Accounts</h2><span class="hint">grouped by where the money lives</span></div>
+    <div class="sec-head"><h2>Day-to-day accounts</h2><span class="hint">the only money that governs spending</span></div>
 
     <div class="group">
-      <div class="group-label"><span class="flag">🇦🇺</span> Australia · Up + AustralianSuper</div>
+      <div class="group-label"><span class="flag">🇦🇺</span> Australia · Up</div>
       <div class="cards">
         <div class="card"><span class="name">Up — Spending</span><span class="bal num">$1,540</span><span class="chip warn">Thin buffer · bridges to 10 Sep</span></div>
         <div class="card"><span class="name">Up — Emergency fund</span><span class="bal num">$4,269</span><span class="chip good">Building · aim $8–10k</span></div>
         <div class="card"><span class="name">Up — Rent saver</span><span class="bal num">$2,140</span><span class="chip neu">Covers ~1 month rent</span></div>
-        <div class="card"><span class="name">AustralianSuper</span><span class="bal num">$8,607</span><span class="chip good">+11% employer · check for 12%</span></div>
       </div>
     </div>
 
@@ -241,11 +248,26 @@
     </div>
 
     <div class="group">
-      <div class="group-label"><span class="flag">🇳🇿</span> New Zealand · BNZ + KiwiSaver</div>
+      <div class="group-label"><span class="flag">🇳🇿</span> New Zealand · BNZ</div>
       <div class="cards">
         <div class="card"><span class="name">BNZ savings pots</span><span class="bal num">$41</span><span class="native num">NZ$50.76 · BLOW / Fire Extinguisher / Insurance</span><span class="chip warn">Near empty</span></div>
         <div class="card"><span class="name">BNZ Advantage Visa</span><span class="bal num neg">−$265</span><span class="native num">NZ$330.44 owed · 20.95% p.a.</span><span class="chip crit">Pay now · min due 4 Aug</span></div>
-        <div class="card"><span class="name">KiwiSaver (Simplicity)</span><span class="bal num">$42,126</span><span class="native num">NZ$52,525.97 · since Dec 2020</span><span class="chip good">+8.68% p.a. · leave it</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCKED VAULT -->
+  <section>
+    <div class="sec-head"><h2>Long-term — pretend it doesn't exist</h2><span class="hint">grows on its own · never spending money</span></div>
+    <div class="vault">
+      <div class="vhead">
+        <span class="vt">🔒 Hands off — walled away from day-to-day</span>
+        <span class="vv num">$55,012 AUD</span>
+      </div>
+      <div class="cards">
+        <div class="card"><span class="name">KiwiSaver (Simplicity) 🇳🇿</span><span class="bal num">$42,126</span><span class="native num">NZ$52,525.97 · +8.68% p.a. since 2020</span><span class="chip good">Locked till retirement</span></div>
+        <div class="card"><span class="name">AustralianSuper 🇦🇺</span><span class="bal num">$8,607</span><span class="native num">+11% employer · check it's 12%</span><span class="chip good">Locked till retirement</span></div>
+        <div class="card"><span class="name">Sharesies 🇳🇿</span><span class="bal num">$4,279</span><span class="native num">NZ$5,335.46 · +51.96% total return</span><span class="chip good">Investing · leave it</span></div>
       </div>
     </div>
   </section>
@@ -319,7 +341,7 @@
   </section>
 
   <footer>
-    Snapshot built from your Up statements, BNZ Visa statements, Wise, KiwiSaver &amp; AustralianSuper. NZD converted at ~0.80. Figures rounded; not financial advice — a picture to act from.
+    Snapshot built from your Up statements, BNZ Visa statements, Wise, KiwiSaver, Sharesies &amp; AustralianSuper. NZD converted at ~0.80. Figures rounded; not financial advice — a picture to act from.
   </footer>
 
 </div>
