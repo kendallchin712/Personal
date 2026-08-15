@@ -1,0 +1,134 @@
+<title>FY25/26 Expense Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --ground:#f6f8f7; --surface:#fff; --surface-2:#eef2f0; --ink:#14201c; --muted:#5b6b65;
+    --faint:#8a9a93; --line:#dde5e1; --accent:#0e7c66; --accent-soft:#d9ede7;
+    --good:#1c8a5b; --good-soft:#dcefe4; --warn:#9a6a12; --warn-soft:#f5e8cf;
+    --crit:#bd3f38; --crit-soft:#f6dcd9; --shadow:0 1px 2px rgba(20,32,28,.04),0 6px 20px rgba(20,32,28,.05);
+  }
+  :root:not([data-theme="light"]){ @media (prefers-color-scheme:dark){
+    --ground:#0d1512; --surface:#15201c; --surface-2:#1d2b26; --ink:#e7efeb; --muted:#95a7a0;
+    --faint:#6a7c75; --line:#263531; --accent:#45c2a2; --accent-soft:#16302a; --good:#43be86;
+    --good-soft:#142c20; --warn:#d5a34a; --warn-soft:#2f2712; --crit:#e06a62; --crit-soft:#331b19;
+    --shadow:0 1px 2px rgba(0,0,0,.2),0 8px 26px rgba(0,0,0,.28);
+  }}
+  :root[data-theme="dark"]{
+    --ground:#0d1512; --surface:#15201c; --surface-2:#1d2b26; --ink:#e7efeb; --muted:#95a7a0;
+    --faint:#6a7c75; --line:#263531; --accent:#45c2a2; --accent-soft:#16302a; --good:#43be86;
+    --good-soft:#142c20; --warn:#d5a34a; --warn-soft:#2f2712; --crit:#e06a62; --crit-soft:#331b19;
+    --shadow:0 1px 2px rgba(0,0,0,.2),0 8px 26px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 64px}
+  .num{font-variant-numeric:tabular-nums}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:0 0 8px}
+  header.mast h1{font-size:23px;font-weight:700;letter-spacing:-.01em;margin:0 0 4px}
+  header.mast p{font-size:13px;color:var(--muted);margin:0 0 22px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:15px 16px;box-shadow:var(--shadow)}
+  .tile .k{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+  .tile .v{font-size:22px;font-weight:730;letter-spacing:-.02em}
+  .tile .v small{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .tile.good .v{color:var(--good)} .tile.warn .v{color:var(--warn)}
+  section{margin-top:28px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+  .sec-head h2{font-size:15px;font-weight:700;margin:0}
+  .sec-head .hint{font-size:12px;color:var(--faint)}
+  .tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  td.amt,th.amt{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .item{font-weight:600}
+  .sub{color:var(--muted);font-size:12px}
+  tfoot td{font-weight:700;border-top:2px solid var(--line);border-bottom:0}
+  .pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.02em;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .pill.full{background:var(--good-soft);color:var(--good)}
+  .pill.part{background:var(--warn-soft);color:var(--warn)}
+  .pill.no{background:var(--surface-2);color:var(--muted)}
+  .note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin-top:12px;font-size:13px;color:var(--muted)}
+  .note b{color:var(--ink);font-weight:650}
+  .note+.note{margin-top:8px}
+  ul.tight{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.tight li{margin:3px 0}
+  footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--faint)}
+  @media (max-width:620px){.tiles{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">For Hnry · sole-trader deductions</p>
+    <h1>FY25/26 Expense Register</h1>
+    <p class="num">Kendall Chin · 1 Jul 2025 – 30 Jun 2026 · built from email receipts &amp; invoices · all AUD</p>
+  </header>
+
+  <div class="tiles">
+    <div class="tile good"><div class="k">Confirmed work deductions</div><div class="v num">$224 <small>+ phone &amp; home-office</small></div></div>
+    <div class="tile warn"><div class="k">To verify with Hnry</div><div class="v num">~$85 <small>+ coaching (TBC)</small></div></div>
+    <div class="tile"><div class="k">Personal (excluded)</div><div class="v num">the rest</div></div>
+  </div>
+
+  <!-- CONFIRMED -->
+  <section>
+    <div class="sec-head"><h2>✅ Confirmed work deductions</h2><span class="hint">strong nexus · claim the work-use %</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Date</th><th>Merchant</th><th>Item</th><th class="amt">Amount</th><th>Claim</th></tr></thead>
+      <tbody>
+        <tr><td class="num">11 Oct 2025</td><td>Amazon (SONGMICS)</td><td><span class="item">Ergonomic office chair</span> OBN37WT</td><td class="amt">$140.23</td><td><span class="pill full">~100%</span></td></tr>
+        <tr><td class="num">12 Oct 2025</td><td>Amazon (MOUNTUP)</td><td><span class="item">Monitor arm</span> gas-spring desk mount</td><td class="amt">$39.99</td><td><span class="pill full">~100%</span></td></tr>
+        <tr><td class="num">27 Apr 2026</td><td>Anthropic</td><td><span class="item">Claude</span> credit purchase <span class="sub">#2735-8464-2658</span></td><td class="amt">~$22.00*</td><td><span class="pill full">work-use %</span></td></tr>
+        <tr><td class="num">9 May 2026</td><td>Anthropic</td><td><span class="item">Claude</span> credit purchase <span class="sub">#2977, incl. $2.00 GST</span></td><td class="amt">$22.00</td><td><span class="pill full">work-use %</span></td></tr>
+        <tr><td class="num">monthly</td><td>Belong</td><td><span class="item">Mobile phone</span> <span class="sub">~11 receipts, Sep 2025–Jun 2026, ~$30/mo</span></td><td class="amt">~$330</td><td><span class="pill part">work-use %†</span></td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="3">Equipment + Claude (excl. phone)</td><td class="amt">~$224</td><td></td></tr></tfoot>
+    </table></div>
+    <div class="note">*April Claude receipt exists (amount to confirm from the PDF — the May one was $22). &nbsp;†Phone: claim the work-use % of Belong <b>or</b> roll it into the fixed-rate method — <b>not both</b>.</div>
+  </section>
+
+  <!-- VERIFY -->
+  <section>
+    <div class="sec-head"><h2>🟡 Verify with Hnry — borderline / dual-purpose</h2><span class="hint">defensible only with genuine work use</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Date</th><th>Merchant</th><th>Item</th><th class="amt">Amount</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="num">29 Jul 2025</td><td>Abi Connick (Creatively DRVN)</td><td><span class="item">Coaching / course payment</span></td><td class="amt">in PDF</td><td class="sub">Deductible only if it relates to earning your income (pro development). Amount is in the attached receipt.</td></tr>
+        <tr><td class="num">8 Feb 2026</td><td>Amazon (SanDisk)</td><td><span class="item">128GB microSD + card reader</span></td><td class="amt">$46.18</td><td class="sub">Work data storage? Claim work-use % if used for work files.</td></tr>
+        <tr><td class="num">11 Mar 2026</td><td>Australia Post</td><td><span class="item">4× parcel post + mailers</span> <span class="sub">(incl. $3.55 GST)</span></td><td class="amt">$39.00</td><td class="sub">Looks like personal parcels to 4 people — only if work-related postage.</td></tr>
+        <tr><td class="num">~2026</td><td>Apple / JB Hi-Fi?</td><td><span class="item">Replacement earbuds</span></td><td class="amt">TBC</td><td class="sub">Not found in Amazon mail — bought elsewhere. Partial: claim the work-call use %.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- HOME OFFICE -->
+  <section>
+    <div class="sec-head"><h2>🏠 Home-office running costs — your biggest claim</h2></div>
+    <div class="note"><b>Not a receipt — a calculation.</b> As a 5-day-a-week WFH worker, claim the ATO <b>fixed rate (70c per hour worked from home for 2025-26)</b>, which covers electricity/gas (heating), internet, phone and stationery. Log your work-from-home hours. If Hnry uses this method, don't <em>also</em> itemise the Belong phone — it's already included. Equipment (chair, monitor arm) is separate and claimed on top either way.</div>
+  </section>
+
+  <!-- PERSONAL -->
+  <section>
+    <div class="sec-head"><h2>❌ Personal — excluded (for completeness)</h2><span class="hint">found in email; not deductible</span></div>
+    <ul class="tight">
+      <li><b>Comfort/home gadgets:</b> Sunbeam heated blanket, Echo Show 8 ×2, Instant Pot, BUZIO water bottles, yogurt strainer ($26.97)</li>
+      <li><b>Beauty:</b> lash/brow kits (MIYA LASH, Oreola, KevKev, CLIONE), Cetaphil skincare</li>
+      <li><b>Media &amp; leisure:</b> Audible audiobooks (many), "Wabi Sabi" book, State of Origin / event tickets</li>
+      <li><b>Travel:</b> Jetstar flights, dnata in-flight (JQ217) — personal NZ trips</li>
+      <li><b>Food:</b> Makan restaurant &amp; other meals</li>
+      <li><b>Other:</b> Ambulance Victoria membership ($13.75), rental bond transfer (RTBA)</li>
+      <li><b>Cable locks</b> (Tcyoatoa, Sep 2025) — minor; only if securing work equipment</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Before you file</h2></div>
+    <div class="note">Keep the <b>tax-invoice PDFs</b> — the Anthropic receipts and Australia Post invoice itemise GST; that's what substantiates a claim.</div>
+    <div class="note"><b>Timing:</b> everything here is dated within FY25/26. Your <b>IKEA furniture</b> (Aug 2026) and later Claude/Belong receipts belong to <b>FY26/27</b> — save them for next year.</div>
+    <div class="note"><b>Not tax advice.</b> This is a candidate list from your inbox. Hnry (your registered agent) applies the work-use %, chooses the method, and lodges. This sweep covered the main receipt patterns — some amounts are marked TBC where they sit inside PDF attachments.</div>
+  </section>
+
+  <footer>Compiled from Gmail receipts/invoices, 1 Jul 2025 – 30 Jun 2026. Amounts as shown in order confirmations; items in PDF attachments marked TBC. Not financial advice.</footer>
+</div>
