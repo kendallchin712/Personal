@@ -43,3 +43,10 @@ A running log to spot patterns over time — is the "funk" cyclical (mood/mental
 - **What I meant to do vs. what I did:** Wanted (for weeks): markets, lash lift, brow lamination, laundry, nails. Did: scrolling, Claude, games, TV, naps, Substack — "anything but" the intended thing.
 - **Anything notable / context:** WFH 5 days/week. Describes this as a familiar cycle she's been through before.
 - **Notes:** Started this log tonight specifically to catch the pattern next time. First entry.
+
+#### Oura signals (28 Jul – 25 Aug 2026)
+- **Movement / "hermit mode" is visible in hard data.** Steps have collapsed and gone bimodal: occasional active days (Jul 31 ~11.6k, Aug 8 ~11.7k, Aug 21 ~8.5k) scattered among near-housebound days. Last week especially — Aug 18: 660, Aug 19: 423, Aug 22: 314, Aug 23: 234 steps. Those sub-500 days = essentially not leaving the room. Today (Aug 25, two food trips): 1,967.
+- **Sleep isn't short so much as *irregular*.** Scores swing hard (45 → 92 → 53 → 90 within days). The unstable contributor is **timing** (bounces 100 → 21) — i.e. bedtime/wake-time is erratic, not that total sleep is always low. REM also swings wildly (12–18 on bad nights vs 90–100 on good). Matches "waking with the bare minimum time before 9am."
+- **Body temperature shows a clear cyclical rise-and-fall** (Oura temp is a rough cycle proxy): elevated late Jul/early Aug → sharp drop ~Aug 6–7 → low through ~Aug 11 → climbing again to a peak ~Aug 17–20 → dropping again by Aug 25. *Consistent with* a menstrual-cycle rhythm — worth confirming by logging actual cycle day. **→ ACTION: note where I am in my cycle.**
+- **Recovery is actually okay.** HRV balance dipped early Aug (~49–56) but *recovered* to 85–91 mid-to-late Aug; resting HR mostly fine. So the body isn't in a physical crisis — physiologically it's recovering. That nudges this toward **mood/motivation/drive** (low get-up-and-go) rather than being physically run down.
+- **Stress:** mostly "normal," a few big spikes — Aug 16 stress_high ~10.75h (highest in range), Aug 24 also stressful. Otherwise not the dominant signal.
