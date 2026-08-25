@@ -64,3 +64,17 @@ A running log to spot patterns over time — is the "funk" cyclical (mood/mental
 - This *unifies the whole picture*: work (visible) is the one container that holds; the shower pattern is literally "only when seen"; the collapse is entirely in the unwitnessed, just-for-me domain.
 - **Not a flaw — it's wiring.** She's externally-referenced/motivated. The smart response isn't "learn to do it alone," it's to **borrow a witness for the private stuff** (accountability partner, body-doubling, sharing/telling someone, making the invisible visible). She explicitly asked for an external motivator.
 - **Implication for this log:** the funk isn't just "low mood" — a lot of it is an *initiation* problem that a witness/accountability structure can directly unlock. Big lever.
+
+#### The GOOD stuff — fuller picture (the ~2 weeks she'd left out)
+She opened by reporting only the shame/negatives; the fuller record is a connected, capable, well-loved person having a *localised* dip, not a shut-down one.
+- **Weekend 1 — Thu:** work + Ubered to Chadstone for a big group dinner (NZ friend visiting). Fun, warm, good catch-up.
+- **Fri:** work, nap, dinner with friend + her sister + mum. Then home and pulled the trigger on a ~$1k IKEA order — a full week of using the room configurator first, so *considered*, not reckless.
+- **Sat:** lazy morning; afternoon met a friend to lend a suitcase; quiet night in.
+- **Sun:** up early-ish (for a weekend), IKEA delivered, spent the *whole day* building furniture + rearranging her room + set up for the week.
+- **Weekday:** work Mon–Fri; mostly ordered food, cooked a few times.
+- **Weekend 2 — Fri:** first-ever AFL game with flatmate Jen; met a friend beforehand, bar with him + friends after.
+- **Sat/Sun:** hermit mode; skipped markets, lash lift, brow lamination, nails (again).
+- **Mon:** work; called Mum (checking in on her Gold Coast trip); did chores (vacuumed lounge, wiped surfaces, tidied); heated leftovers *and* cooked a steamed egg; ate in the lounge with the flatmate; made butter mochi.
+- **Tue (today):** the flat day this log opens with.
+
+**What this confirms:** the mechanism holds even inside the good stuff. Almost everything that *got done* was witnessed / social / externally-structured (dinners, lending a suitcase, AFL, calling Mum; even the IKEA build had delivery-day momentum + a visibly shared space + Monday looming). Almost everything *skipped* was solo, private, just-for-her (markets, lashes, brows, nails). Note too: the Monday she rallied on chores/cooking/mochi was a *relational* day (Mum call, flatmate present) — social contact seems to prime activation. And weekends are genuinely active/social; hermit mode clusters on specific solo days, all inside the luteal build. **Both things are true at once: real dip AND a rich, functioning life. Tonight the negative was just the loud part.**
