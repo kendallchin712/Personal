@@ -1,0 +1,224 @@
+<title>Freedom Number</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --ground: #f6f8f7;
+    --surface: #ffffff;
+    --surface-2: #eef2f0;
+    --ink: #14201c;
+    --muted: #5b6b65;
+    --faint: #8a9a93;
+    --line: #dde5e1;
+    --accent: #0e7c66;
+    --accent-soft: #d9ede7;
+    --good: #1c8a5b;
+    --good-soft: #dcefe4;
+    --warn: #9a6a12;
+    --warn-soft: #f5e8cf;
+    --crit: #bd3f38;
+    --crit-soft: #f6dcd9;
+    --gold: #b7791f;
+    --gold-soft: #f6ecd6;
+    --shadow: 0 1px 2px rgba(20,32,28,.04), 0 6px 20px rgba(20,32,28,.05);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --ground: #0d1512; --surface: #15201c; --surface-2: #1d2b26; --ink: #e7efeb;
+      --muted: #95a7a0; --faint: #6a7c75; --line: #263531; --accent: #45c2a2;
+      --accent-soft: #16302a; --good: #43be86; --good-soft: #142c20; --warn: #d5a34a;
+      --warn-soft: #2f2712; --crit: #e06a62; --crit-soft: #331b19; --gold: #e0b25c; --gold-soft: #2c2410;
+      --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 26px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0d1512; --surface: #15201c; --surface-2: #1d2b26; --ink: #e7efeb;
+    --muted: #95a7a0; --faint: #6a7c75; --line: #263531; --accent: #45c2a2;
+    --accent-soft: #16302a; --good: #43be86; --good-soft: #142c20; --warn: #d5a34a;
+    --warn-soft: #2f2712; --crit: #e06a62; --crit-soft: #331b19; --gold: #e0b25c; --gold-soft: #2c2410;
+    --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 26px rgba(0,0,0,.28);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 28px 20px 64px; }
+  .num { font-variant-numeric: tabular-nums; }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); margin: 0 0 10px; }
+
+  header.mast { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  header.mast h1 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+  header.mast .asof { font-size: 12.5px; color: var(--muted); }
+
+  .hero { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 26px 24px; box-shadow: var(--shadow); margin-bottom: 22px; }
+  .hero .figure { font-size: clamp(40px, 9vw, 58px); font-weight: 760; letter-spacing: -.025em; line-height: 1; margin: 2px 0 4px; }
+  .hero .cur { font-size: .42em; font-weight: 600; color: var(--muted); letter-spacing: 0; vertical-align: .28em; margin-left: 6px; }
+  .hero .sub { font-size: 13.5px; color: var(--muted); margin: 0; }
+  .hero .sub b { color: var(--ink); font-weight: 650; }
+  .progress { position: relative; height: 14px; border-radius: 7px; background: var(--surface-2); overflow: hidden; margin: 20px 0 10px; }
+  .progress > span { display: block; height: 100%; background: linear-gradient(90deg, var(--good), var(--accent)); }
+  .hero .totalline { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
+  .hero .totalline b { color: var(--ink); font-weight: 700; }
+
+  section { margin-top: 30px; }
+  .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .sec-head h2 { font-size: 15px; font-weight: 700; letter-spacing: -.005em; margin: 0; }
+  .sec-head .hint { font-size: 12px; color: var(--faint); }
+
+  .callout { background: var(--warn-soft); border: 1px solid color-mix(in srgb, var(--warn) 30%, transparent); border-radius: 14px; padding: 18px 20px; }
+  .callout h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--warn); display: flex; align-items: center; gap: 8px; }
+  .callout p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink); }
+
+  /* Ladder */
+  .ladder { display: flex; flex-direction: column; gap: 10px; }
+  .rung { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; padding: 15px 17px; box-shadow: var(--shadow); display: grid; grid-template-columns: auto 1fr auto; gap: 3px 14px; align-items: center; }
+  .rung .em { grid-row: 1 / span 2; font-size: 24px; width: 40px; text-align: center; }
+  .rung .t { font-size: 14.5px; font-weight: 700; }
+  .rung .d { grid-column: 2; font-size: 12.5px; color: var(--muted); }
+  .rung .big { grid-row: 1 / span 2; font-size: 18px; font-weight: 760; letter-spacing: -.02em; text-align: right; }
+  .rung .big small { display: block; font-size: 10.5px; font-weight: 600; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; padding: 15px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 3px; }
+  .card .name { font-size: 12.5px; color: var(--muted); font-weight: 550; }
+  .card .bal { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .card .native { font-size: 11.5px; color: var(--faint); }
+  .chip { align-self: flex-start; margin-top: 8px; font-size: 11px; font-weight: 650; padding: 3px 9px; border-radius: 999px; line-height: 1.35; }
+  .chip.good { background: var(--good-soft); color: var(--good); }
+  .chip.crit { background: var(--crit-soft); color: var(--crit); }
+  .chip.gold { background: var(--gold-soft); color: var(--gold); }
+
+  /* Scenario table */
+  .tablecard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+  table.scen { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.scen th, table.scen td { padding: 12px 14px; text-align: left; }
+  table.scen thead th { font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--faint); font-weight: 700; border-bottom: 1px solid var(--line); }
+  table.scen td { border-bottom: 1px dashed var(--line); }
+  table.scen tbody tr:last-child td { border-bottom: 0; }
+  table.scen td.age { font-weight: 700; }
+  table.scen .hl { background: var(--accent-soft); }
+  table.scen td.pm { font-weight: 650; }
+  .younger { color: var(--good); }
+  .older { color: var(--muted); }
+
+  /* Accelerators */
+  ol.acc { list-style: none; counter-reset: a; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  ol.acc li { counter-increment: a; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 15px; box-shadow: var(--shadow); display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: start; }
+  ol.acc .idx { grid-row: 1 / span 2; width: 26px; height: 26px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 13px; display: grid; place-items: center; margin-top: 1px; }
+  ol.acc .t { font-size: 14px; font-weight: 650; }
+  ol.acc .d { grid-column: 2; font-size: 12.5px; color: var(--muted); }
+  ol.acc .lever { grid-column: 2; margin-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: .03em; color: var(--accent); }
+
+  .netnote { margin: 14px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--muted); background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 15px; }
+  .netnote b { color: var(--ink); font-weight: 650; }
+
+  footer { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--faint); }
+
+  @media (max-width: 620px) {
+    .rung { grid-template-columns: auto 1fr; }
+    .rung .big { grid-row: auto; grid-column: 2; text-align: left; margin-top: 4px; }
+    .rung .big small { display: inline; margin-left: 6px; }
+    table.scen th:nth-child(3), table.scen td:nth-child(3) { display: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <h1>Freedom Number</h1>
+    <span class="asof num">Kendall Chin · 31 (32 in Dec) · updated 30 Sep 2026 · AUD, today's dollars</span>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">Work-optional target · $65k/yr spending × 25 (the 4% rule)</p>
+    <div class="figure num">$1.6M<span class="cur">invested</span></div>
+    <p class="sub">The pot that lets work become a <b>choice</b>. At $1.6M, a safe ~4% draw funds <b>$65k/year</b> — indefinitely, without touching the principal.</p>
+    <div class="progress" role="img" aria-label="About 3 percent of the way to the 1.6 million dollar target"><span style="width:3.4%"></span></div>
+    <p class="totalline">You're at <b class="num">~$55,015</b> invested — about <b>3.4%</b> of the way. Long climb, but you're 31: <b>time in the market</b> is the one advantage you can't buy back later. Start now beats start perfect.</p>
+  </div>
+
+  <!-- REALITY -->
+  <section>
+    <div class="sec-head"><h2>The honest headline</h2></div>
+    <div class="callout">
+      <h3>⚠︎ "$1.6M as early as possible" needs a bigger engine than $57k income gives</h3>
+      <p>At a realistic <b>$1,000–1,500/mo</b> (roughly your surplus after rent + living), $1.6M lands near <b>age 60–65, not 45</b>. That's not a no — it's a map. Your freedom date is set by two levers you <i>control</i>: <b>how much you earn</b> (contractor rate = your accelerator) and <b>how much you'll spend</b> in retirement. The table below is your dashboard for both.</p>
+    </div>
+  </section>
+
+  <!-- THE MILESTONE LADDER -->
+  <section>
+    <div class="sec-head"><h2>The ladder — three milestones, not one</h2><span class="hint">$65k/yr lifestyle</span></div>
+    <div class="ladder">
+      <div class="rung">
+        <span class="em">🪁</span>
+        <span class="t">Coast FIRE</span>
+        <span class="d">Invested enough that compounding alone reaches $1.6M by 60 — you can stop <i>saving</i>, just cover today's bills.</span>
+        <span class="big num">~$370k<small>by ~age 40</small></span>
+      </div>
+      <div class="rung">
+        <span class="em">☕</span>
+        <span class="t">Barista / Semi FIRE</span>
+        <span class="d">Investments cover ~half your spend; a part-time or lighter gig covers the rest. Work dials down to optional-ish.</span>
+        <span class="big num">~$800k<small>half-way</small></span>
+      </div>
+      <div class="rung">
+        <span class="em">🏖️</span>
+        <span class="t">Full FIRE · work-optional</span>
+        <span class="d">25× your $65k spend. Work is fully a choice. This is the summit you picked.</span>
+        <span class="big num">$1.6M<small>the goal</small></span>
+      </div>
+    </div>
+    <p class="netnote">🪁 <b>Coast is your first real win.</b> Roughly <b>$370k</b> invested by ~40 would compound to $1.6M by 60 untouched — so hitting Coast means you could downshift in your 40s and still retire comfortably at a normal age. It's far nearer than the summit, and worth aiming at first.</p>
+  </section>
+
+  <!-- LOCKED VS ACCESSIBLE -->
+  <section>
+    <div class="sec-head"><h2>The hidden trap: most of your money is locked</h2><span class="hint">matters hugely for retiring <i>early</i></span></div>
+    <div class="cards">
+      <div class="card"><span class="name">🔓 Accessible — Sharesies</span><span class="bal num">$4,279</span><span class="native num">reachable any age</span><span class="chip crit">Your bridge pot · tiny</span></div>
+      <div class="card"><span class="name">🔒 KiwiSaver 🇳🇿</span><span class="bal num">$42,126</span><span class="native num">locked till 65</span><span class="chip gold">Traditional retirement only</span></div>
+      <div class="card"><span class="name">🔒 AustralianSuper 🇦🇺</span><span class="bal num">$8,610</span><span class="native num">locked till ~60</span><span class="chip gold">Traditional retirement only</span></div>
+    </div>
+    <p class="netnote"><b>To retire before 60, your locked accounts can't help you</b> — you'd need an <b>accessible</b> pot big enough to bridge from your early-retirement age to 60, when super unlocks. Right now that pot is <b>$4,279</b>. So the hustle money goes into an <b>accessible ETF / Sharesies</b>, not extra super — even though super is more tax-friendly, you can't touch it early. Build the bridge first.</p>
+  </section>
+
+  <!-- SCENARIO TABLE -->
+  <section>
+    <div class="sec-head"><h2>What each hustle level buys you</h2><span class="hint">from ~$55k today · 5% real return</span></div>
+    <div class="tablecard">
+      <table class="scen num">
+        <thead>
+          <tr><th>Invest / month</th><th>Reach $1.6M<br>(your $65k life)</th><th>Reach $1.25M<br>(leaner $50k life)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="pm">$1,000</td><td class="age older">~age 69</td><td class="age older">~age 65</td></tr>
+          <tr><td class="pm">$1,500</td><td class="age older">~age 64</td><td class="age">~age 60</td></tr>
+          <tr class="hl"><td class="pm">$2,000</td><td class="age">~age 60</td><td class="age younger">~age 56</td></tr>
+          <tr><td class="pm">$3,000</td><td class="age younger">~age 55</td><td class="age younger">~age 51</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="netnote">Two things jump out. <b>Income is everything:</b> lifting your investing from $1k → $3k/mo pulls your freedom date in by <b>~14 years</b>. And <b>the target matters:</b> trimming the goal from $65k → $50k/yr buys you another <b>~4–5 years</b> at every level. To hit <b>45</b>, you'd need well over $3k/mo <i>and</i> a leaner target — which really means: grow the income first.</p>
+  </section>
+
+  <!-- ACCELERATORS -->
+  <section>
+    <div class="sec-head"><h2>Where the hustle actually goes</h2></div>
+    <ol class="acc">
+      <li><span class="idx">1</span><span class="t">Raise your day rate / billable capacity</span><span class="d">You're a contractor — your rate is the single biggest lever, and it's yours to move. Every extra $500/mo invested is years off the clock. This beats every budgeting trick combined.</span><span class="lever">↑ Lever #1 · pulls date in ~14 yrs ($1k→$3k/mo)</span></li>
+      <li><span class="idx">2</span><span class="t">Open an accessible ETF and auto-invest into it</span><span class="d">A low-cost global index ETF (or Sharesies) that you can reach before 60. Set a recurring buy the day after each pay lands — pay your freedom first. This is the bridge pot from the section above.</span><span class="lever">↑ Builds the pre-60 bridge · start small, stay consistent</span></li>
+      <li><span class="idx">3</span><span class="t">Finish the safety net + Leave first, then redirect</span><span class="d">Don't invest at the expense of the emergency fund — a forced sell in a downturn kills returns. Once Emergency hits ~$12k (early 2027), redirect that ~$1,000/mo split straight into the ETF.</span><span class="lever">→ Sequence: safety net → then invest the same flow</span></li>
+      <li><span class="idx">4</span><span class="t">Pressure-test the $65k target as you go</span><span class="d">$65k/yr is more than you spend now. If your real work-optional life is closer to $50k, you're 4–5 years nearer than the headline — and $1.25M is a far more reachable summit.</span><span class="lever">↓ Lever #2 · every $15k/yr trimmed ≈ 4–5 yrs</span></li>
+      <li><span class="idx">5</span><span class="t">Ask Hnry: are you still getting super? + early-access rules</span><span class="d">As a contractor your Super Guarantee may have changed — confirm what's still going in. And note super/KiwiSaver are for the 60+ leg; they compound quietly while your ETF does the early-retirement work.</span><span class="lever">✓ Don't leave employer super on the table</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    Assumptions: 5% real return (~7% nominal − 2% inflation), all figures in today's dollars, starting invested ~$55,015 (KiwiSaver + AustralianSuper + Sharesies), consistent monthly investing, 4% safe-withdrawal rule. Ignores tax on investment gains (AU CGT) and any future employer super. Real markets don't move in straight lines — this is a compass, not a GPS. Not financial advice; a picture to hustle against. Updated 30 Sep 2026.
+  </footer>
+
+</div>
