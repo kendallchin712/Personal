@@ -110,6 +110,50 @@ switches to Emergency.
 - **Open questions for Hnry:** temporary-resident status (affects tax on NZ
   income and selling NZ shares), super at 12%, Hnry's pricing change.
 
+## Published pages (private claude.ai artifacts)
+
+| Page | URL | Source |
+|---|---|---|
+| Morning Brief (Kendall's home-screen shortcut) | https://claude.ai/artifact/My49XxZ7KpEhg2DTFPTCfp | `morning-brief.html` |
+| Money Map | https://claude.ai/artifact/VAswwoejCVfqkUyJ7ExEKv | `money-map.html` |
+| Freedom Number | https://claude.ai/artifact/A7w6wcpXg4qj3zrGADrcMD | `freedom-number.html` |
+| Sleep & recovery (Oura, live) | https://claude.ai/artifact/J1b43eNcogcDQj9eTn4vRZ | not in repo |
+
+- **Morning Brief** reads Oura **live** through the connector, so it needs no
+  daily update for Oura. Its Up balances come from one document in its data
+  store: collection `brief`, doc `up`, with this shape:
+  `{updatedAt, source, accounts:{spending, essentials, emergency, leave},
+  targets:{essentials, leave, safetyNet}, manual:{fireExtinguisherAUD},
+  links:{moneyMap, freedomNumber, sleepRecovery}}`.
+- **Sleep & recovery** is also live. Never republish it from a routine.
+- To update a page from a new session, `Artifact` `read` its URL first, then
+  publish the repo file with `url` set to that URL, so the link stays the same.
+
+## Daily 8am routine
+
+A scheduled routine runs this every morning at 8am Melbourne time:
+
+1. Clone `kendallchin712/Personal` if it isn't already there, check out
+   `claude/personal-finances-q02plj`, and `git pull`.
+2. Check `UP_TOKEN` is set (print only its length) and run
+   `python3 up-sync.py --json`. If it fails, stop here. Don't write
+   guessed numbers anywhere; say what failed.
+3. **Morning Brief data:** `ArtifactData` `get` collection `brief`, doc `up`
+   on the Morning Brief URL. Then `set` it with `if_version` set to the
+   version you just read. Write fresh `accounts` (Spending = the TRANSACTIONAL
+   account; Essentials, Emergency and `Leave/Time off` savers by name),
+   `updatedAt` = now (ISO, UTC) and `source` = "Up API". Keep `targets`,
+   `manual` and `links` as they were.
+4. **Money Map:** run the refresh workflow above (Up cards, hero, net worth,
+   safety net, dates). Then `Artifact` `read` the Money Map URL and publish
+   `money-map.html` with `url` set to it.
+5. Commit with a short message, then push.
+6. Finish with a 2–3 line summary: the balances, anything unusual (e.g.
+   Spending under $100, or rent hit but flatmate money hasn't arrived), and
+   anything that failed.
+
+Don't touch Freedom Number or Sleep & recovery in the routine.
+
 ## Git
 
 - Work on branch `claude/personal-finances-q02plj`. Before committing, run

@@ -1,0 +1,315 @@
+<title>Morning Brief</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone-first column. Body (readiness) first, then money, then what's next. */
+:root {
+  --ground: #EEF1EC;
+  --card: #FBFCFA;
+  --ink: #18231E;
+  --muted: #5D6B64;
+  --line: #D6DDD7;
+  --track: #E2E8E3;
+  --accent: #C46A12;      /* marigold: the morning */
+  --good: #2F7A4F;
+  --warn: #A76A0B;
+  --low: #B2413B;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #121815; --card: #19211D; --ink: #E4EAE6; --muted: #98A69F;
+    --line: #2A3530; --track: #26302B; --accent: #F0A04B;
+    --good: #6CC08F; --warn: #E3AE4F; --low: #E5807A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #121815; --card: #19211D; --ink: #E4EAE6; --muted: #98A69F;
+  --line: #2A3530; --track: #26302B; --accent: #F0A04B;
+  --good: #6CC08F; --warn: #E3AE4F; --low: #E5807A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.5;
+  font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased;
+}
+main {
+  max-width: 560px; margin: 0 auto;
+  padding-block: 22px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 14px;
+}
+h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+h2 { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-family: var(--body); }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+header { display: flex; flex-direction: column; gap: 4px; padding-bottom: 6px; }
+.date { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: 0.02em; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.card-head a { color: var(--accent); font-size: 14px; font-weight: 600; text-decoration: none; }
+.card-head a:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+.scores { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.score { display: flex; flex-direction: column; gap: 2px; }
+.score .n { font-family: var(--display); font-size: 48px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+.score .l { font-size: 13px; color: var(--muted); }
+.tone-good { color: var(--good); } .tone-warn { color: var(--warn); } .tone-low { color: var(--low); }
+.line { font-size: 16px; max-width: 46ch; }
+
+.hero-money { display: flex; flex-direction: column; gap: 2px; }
+.hero-money .n { font-family: var(--display); font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+
+.rows { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 10px 0; border-top: 1px solid var(--track); }
+.row:first-child { border-top: 0; padding-top: 0; }
+.row .k { font-weight: 600; }
+.row .v { font-weight: 600; text-align: right; }
+.row .sub { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
+.bar { grid-column: 1 / -1; height: 7px; border-radius: 4px; background: var(--track); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 4px; background: var(--good); }
+.bar i.warn { background: var(--warn); } .bar i.accent { background: var(--accent); }
+
+.next { display: flex; flex-direction: column; gap: 8px; }
+.next li { display: grid; grid-template-columns: 74px 1fr; gap: 10px; }
+.next ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.when { font-weight: 600; color: var(--accent); font-size: 14px; }
+
+.notice { font-size: 14px; color: var(--warn); }
+.skel { height: 14px; border-radius: 6px; background: var(--track); }
+.links { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; }
+.links a { color: var(--accent); font-weight: 600; text-decoration: none; }
+footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width 0.5s ease; } }
+</style>
+
+<main>
+  <header>
+    <p class="date" id="today">Today</p>
+    <h1>Morning Brief</h1>
+  </header>
+
+  <section class="card" id="body-card" aria-labelledby="body-h">
+    <div class="card-head">
+      <h2 id="body-h">Your body</h2>
+      <a href="https://claude.ai/artifact/J1b43eNcogcDQj9eTn4vRZ" target="_blank" rel="noopener">Sleep &amp; recovery →</a>
+    </div>
+    <div id="body-content">
+      <div class="skel" style="width:60%"></div>
+    </div>
+  </section>
+
+  <section class="card" id="money-card" aria-labelledby="money-h">
+    <div class="card-head">
+      <h2 id="money-h">Your money</h2>
+      <a id="mm-link" href="#" target="_blank" rel="noopener" hidden>Money Map →</a>
+    </div>
+    <div id="money-content">
+      <div class="skel" style="width:70%"></div>
+    </div>
+  </section>
+
+  <section class="card next" aria-labelledby="next-h">
+    <h2 id="next-h">Coming up</h2>
+    <ul id="next-list"></ul>
+  </section>
+
+  <footer id="foot">Oura reads live while this page is open. Up balances are pulled by your 8am routine.</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var TZ = "Australia/Melbourne";
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var money = function (n) { return "$" + Number(n).toLocaleString("en-AU", { minimumFractionDigits: 0, maximumFractionDigits: 0 }); };
+  var money2 = function (n) { return "$" + Number(n).toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+
+  // ---- Melbourne date helpers ----
+  function melParts(d) {
+    var p = {};
+    new Intl.DateTimeFormat("en-AU", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" })
+      .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+    return { y: +p.year, m: +p.month, d: +p.day };
+  }
+  function iso(y, m, d) { return y + "-" + String(m).padStart(2, "0") + "-" + String(d).padStart(2, "0"); }
+  function dayDiff(a, b) { return Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / 864e5); }
+  function addMonths(t, k) { var dt = new Date(Date.UTC(t.y, t.m - 1 + k, 1)); return { y: dt.getUTCFullYear(), m: dt.getUTCMonth() + 1 }; }
+  function label(y, m, d) { return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-AU", { timeZone: "UTC", weekday: "short", day: "numeric", month: "short" }); }
+
+  var now = melParts(new Date());
+  $("#today").textContent = new Date().toLocaleDateString("en-AU", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" });
+
+  // Next payday (~10th) and next rent debit (~16th).
+  function nextOn(dom) {
+    if (now.d <= dom) return { y: now.y, m: now.m, d: dom };
+    var n = addMonths(now, 1); return { y: n.y, m: n.m, d: dom };
+  }
+  var payday = nextOn(10), rent = nextOn(16);
+  var daysToPay = Math.max(1, dayDiff(now, payday));
+
+  // ---- Coming up (static calendar facts, always visible) ----
+  function renderNext(extra) {
+    var items = [];
+    items.push({ d: payday, t: daysToPay <= 1 ? "Payday. Essentials to full, then $1,000 to Leave, then $325 to Emergency." : "Payday in " + daysToPay + " days. Essentials, then Leave $1,000, then Emergency $325." });
+    items.push({ d: rent, t: "Rent of $5,097 debits from Essentials around now. Mona's and Gen's shares refill it a day or two later." });
+    var xmas = { y: 2026, m: 12, d: 21 };
+    if (dayDiff(now, xmas) >= 0) items.push({ d: xmas, t: "Bedford Lane shutdown starts. Leave needs $3,100 by the Dec 10 pay." });
+    items.sort(function (a, b) { return dayDiff(b.d, a.d); });
+    $("#next-list").innerHTML = items.map(function (i) {
+      return '<li><span class="when">' + esc(label(i.d.y, i.d.m, i.d.d)) + '</span><span>' + esc(i.t) + '</span></li>';
+    }).join("") + (extra || "");
+  }
+  renderNext();
+
+  // ---- Oura (live) ----
+  function norm(p) {
+    if (p == null) return [];
+    if (typeof p === "string") { try { return norm(JSON.parse(p)); } catch (e) { return []; } }
+    if (Array.isArray(p)) { if (p[0] && typeof p[0].text === "string") return norm(p[0].text); return p; }
+    if (typeof p.result === "string") return norm(p.result);
+    if (Array.isArray(p.data)) return p.data;
+    return [];
+  }
+  var oura = { ready: null, sleep: null, err: {} };
+  var CONTRIB = {
+    activity_balance: "activity balance", body_temperature: "body temperature", hrv_balance: "HRV balance",
+    previous_day_activity: "yesterday's activity", previous_night: "last night's sleep", recovery_index: "recovery index",
+    resting_heart_rate: "resting heart rate", sleep_balance: "sleep balance", sleep_regularity: "sleep regularity",
+    deep_sleep: "deep sleep", efficiency: "sleep efficiency", latency: "time to fall asleep", rem_sleep: "REM sleep",
+    restfulness: "restfulness", timing: "sleep timing", total_sleep: "total sleep"
+  };
+  function errCopy(code) {
+    switch (code) {
+      case "needs_reauth": return "Oura needs reconnecting. Reconnect it in claude.ai Settings → Connectors.";
+      case "server_not_connected": return "Oura isn't connected. Add it in claude.ai Settings → Connectors.";
+      case "not_in_manifest": return "Oura access is off for this page. Reload and allow Oura when asked.";
+      case "selection_required": return "You have more than one Oura connection. Choose one when Claude asks.";
+      case "server_unavailable": return "Oura isn't responding right now. It usually recovers in a few minutes.";
+      case "blocked_by_policy": case "approval_required": return "Your organisation's settings block Oura on this page.";
+      default: return "Couldn't load Oura just now. Reload to try again.";
+    }
+  }
+  function tone(s) { return s >= 85 ? "tone-good" : s >= 70 ? "" : "tone-low"; }
+  function renderBody() {
+    var el = $("#body-content");
+    var r = oura.ready, s = oura.sleep;
+    if (!r && !s) {
+      var e = oura.err.ready || oura.err.sleep;
+      if (e) el.innerHTML = '<p class="notice">' + esc(errCopy(e.code)) + '</p>';
+      return;
+    }
+    var rs = r ? r.score : null, ss = s ? s.score : null;
+    var advice = "";
+    if (rs != null) {
+      if (rs >= 85) advice = "Well recovered. A good day for a hard workout or the task you've been avoiding.";
+      else if (rs >= 70) advice = "Steady. A normal day is fine. Protect tonight's bedtime to keep it here.";
+      else advice = "Under-recovered. Keep today light where you can. An early night fixes this fastest.";
+    }
+    var pool = [];
+    [r, s].forEach(function (x) { if (x && x.contributors) Object.keys(x.contributors).forEach(function (k) { var v = x.contributors[k]; if (v != null && CONTRIB[k]) pool.push([k, v]); }); });
+    pool.sort(function (a, b) { return a[1] - b[1]; });
+    var weakest = pool[0];
+    var day = (r || s).day;
+    var fresh = day === iso(now.y, now.m, now.d) ? "" : '<p class="small muted">Latest Oura data is from ' + esc(day) + '. Open the Oura app to sync.</p>';
+    el.innerHTML =
+      '<div class="scores">' +
+        '<div class="score"><span class="n ' + (rs != null ? tone(rs) : "") + '">' + (rs != null ? rs : "–") + '</span><span class="l">Readiness</span></div>' +
+        '<div class="score"><span class="n ' + (ss != null ? tone(ss) : "") + '">' + (ss != null ? ss : "–") + '</span><span class="l">Sleep score</span></div>' +
+      '</div>' +
+      (advice ? '<p class="line">' + esc(advice) + '</p>' : "") +
+      (weakest ? '<p class="small muted">Lowest factor: <b>' + esc(CONTRIB[weakest[0]]) + '</b> (' + weakest[1] + ')</p>' : "") +
+      fresh;
+  }
+  function pickLatest(arr) { var best = null; arr.forEach(function (x) { if (x && x.day && (!best || x.day > best.day)) best = x; }); return best; }
+
+  // ---- Up balances (written daily by the routine into db) ----
+  function renderMoney(doc) {
+    var el = $("#money-content");
+    if (!doc) {
+      el.innerHTML = '<p class="muted">No balances yet. They appear after your 8am routine runs.</p>';
+      return;
+    }
+    var a = doc.accounts || {}, t = doc.targets || {};
+    var spend = +a.spending || 0;
+    var perDay = spend / daysToPay;
+    var ess = +a.essentials || 0, essT = +t.essentials || 0;
+    var leave = +a.leave || 0, leaveT = +t.leave || 3100;
+    var emer = +a.emergency || 0, fire = +(doc.manual && doc.manual.fireExtinguisherAUD) || 0, netT = +t.safetyNet || 12000;
+    var net = emer + fire;
+    var pct = function (v, T) { return T > 0 ? Math.max(0, Math.min(100, v / T * 100)) : 0; };
+
+    var essState = essT && ess >= essT * 0.97 ? "Full. Ready for rent." : "Refilling: " + money(Math.max(0, essT - ess)) + " to go. Flatmate rent and your pay fill it.";
+    var stamp = doc.updatedAt ? new Date(doc.updatedAt) : null;
+    var ageH = stamp ? (Date.now() - stamp.getTime()) / 36e5 : Infinity;
+    var stampTxt = stamp ? stamp.toLocaleString("en-AU", { timeZone: TZ, weekday: "short", hour: "numeric", minute: "2-digit" }) : "unknown";
+
+    el.innerHTML =
+      '<div class="hero-money"><span class="n">' + money2(spend) + '</span>' +
+      '<span class="muted">to spend until payday · about <b>' + money(perDay) + '/day</b> for ' + daysToPay + ' days</span></div>' +
+      '<div class="rows">' +
+        '<div class="row"><span class="k">Essentials</span><span class="v">' + money(ess) + (essT ? ' <span class="muted small">of ' + money(essT) + '</span>' : "") + '</span>' +
+          '<div class="bar"><i style="width:' + pct(ess, essT) + '%"></i></div><span class="sub">' + esc(essState) + '</span></div>' +
+        '<div class="row"><span class="k">Leave / Time off</span><span class="v">' + money(leave) + ' <span class="muted small">of ' + money(leaveT) + '</span></span>' +
+          '<div class="bar"><i class="accent" style="width:' + pct(leave, leaveT) + '%"></i></div><span class="sub">' + (leave >= leaveT ? "Christmas leave is covered." : money(leaveT - leave) + " to go before the Dec 10 pay.") + '</span></div>' +
+        '<div class="row"><span class="k">Safety net</span><span class="v">' + Math.round(pct(net, netT)) + '%</span>' +
+          '<div class="bar"><i style="width:' + pct(net, netT) + '%"></i></div><span class="sub">Up Emergency ' + money(emer) + ' + BNZ Fire Extinguisher ' + money(fire) + ' of ' + money(netT) + '</span></div>' +
+      '</div>' +
+      '<p class="small ' + (ageH > 30 ? 'notice' : 'muted') + '">' + (ageH > 30 ? "This morning's update didn't run. " : "") + 'Up balances as of ' + esc(stampTxt) + (doc.source ? ' · ' + esc(doc.source) : '') + '</p>';
+
+    if (doc.links && doc.links.moneyMap) { var l = $("#mm-link"); l.href = doc.links.moneyMap; l.hidden = false; }
+  }
+
+  // ---- boot capabilities ----
+  (async function () {
+    var c = window.claude;
+    var mcp = null, db = null;
+    try { mcp = c && c.use ? await c.use("mcp") : null; } catch (e) { mcp = null; }
+    try { db = c && c.use ? await c.use("db") : null; } catch (e) { db = null; }
+
+    if (!mcp) {
+      $("#body-content").innerHTML = '<p class="muted">Open this page in Claude to see your Oura scores.</p>';
+    } else {
+      var from = new Date(Date.UTC(now.y, now.m - 1, now.d - 3));
+      var input = { start_date: from.toISOString().slice(0, 10), end_date: iso(now.y, now.m, now.d) };
+      [["ready", "get_daily_readiness"], ["sleep", "get_daily_sleep"]].forEach(function (pair) {
+        var key = pair[0], tool = pair[1], retried = false;
+        mcp.watchTool("Oura", tool, input, function (ev) {
+          if (ev.type === "data") {
+            oura[key] = pickLatest(norm(ev.result.payload != null ? ev.result.payload : ev.result.content));
+            delete oura.err[key];
+          } else {
+            var e = ev.error || {};
+            if (["needs_reauth", "server_not_connected", "blocked_by_policy", "approval_required", "not_in_manifest", "selection_required"].indexOf(e.code) >= 0) oura[key] = null;
+            oura.err[key] = e;
+            if (e.retryable && !retried) {
+              retried = true;
+              setTimeout(function () { mcp.invalidate("Oura", tool, input).catch(function () {}); }, Math.max(e.retryAfterMs || 0, 1500 + Math.random() * 2000));
+            }
+          }
+          renderBody();
+        }, { cache: { staleTime: 5 * 60 * 1000, gcTime: 6 * 60 * 60 * 1000 }, refetchInterval: 30 * 60 * 1000 });
+      });
+    }
+
+    if (!db) {
+      $("#money-content").innerHTML = '<p class="muted">Open this page in Claude to see your balances.</p>';
+    } else {
+      db.doc("brief/up").onSnapshot(function (snap) {
+        renderMoney(snap.exists ? snap.data() : null);
+      }, function (e) {
+        $("#money-content").innerHTML = '<p class="notice">Couldn\'t load your balances (' + esc(e.code) + '). Reload to try again.</p>';
+      });
+    }
+  })();
+})();
+</script>
