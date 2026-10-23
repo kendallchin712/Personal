@@ -111,7 +111,9 @@ switches to Emergency.
   as deductions (e.g. Notion). A FY26/27 expense register doesn't exist yet;
   offer to start one.
 - **Open questions for Hnry:** temporary-resident status (affects tax on NZ
-  income and selling NZ shares), super at 12%, Hnry's pricing change.
+  income and selling NZ shares), Hnry's pricing change.
+- **Super is settled:** Bedford Lane pays 12% Super Guarantee on top of each
+  invoice (18 Sep 2026: $730.80 = 12% of the $6,090 invoice).
 
 ## Published pages (private claude.ai artifacts)
 
