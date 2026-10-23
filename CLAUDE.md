@@ -147,7 +147,11 @@ A scheduled routine runs this every morning at 8am Melbourne time:
 4. **Money Map:** run the refresh workflow above (Up cards, hero, net worth,
    safety net, dates). Then `Artifact` `read` the Money Map URL and publish
    `money-map.html` with `url` set to it.
-5. Commit with a short message, then push.
+5. Commit with a short message, then push. If the push is refused for lack
+   of access, call `add_repo` (owner `kendallchin712`, repo `Personal`,
+   access `push`) once and retry. If it still fails, skip the push and say
+   so in the summary. The published pages are what Kendall reads, so a
+   missed push loses nothing important.
 6. Finish with a 2–3 line summary: the balances, anything unusual (e.g.
    Spending under $100, or rent hit but flatmate money hasn't arrived), and
    anything that failed.
