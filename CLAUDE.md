@@ -53,6 +53,9 @@ to fix. Kendall changes those settings, not you.
    - Saver `Emergency` → **Up — Emergency fund** (5.35%+ Grow rate saver)
    - Saver `Leave/Time off` → **Up — Leave / Time off** (target $3,100)
    - **Up — Wants** is closed ($0) unless a Wants saver reappears.
+   - Up's saver names carry emoji prefixes (e.g. "🚨 Emergency",
+     "💰 Essentials", "🏖️ Leave/Time off"), so match by the word the name
+     contains, not by exact name.
 3. **Non-Up accounts are manual** (no API): BNZ (Fire Extinguisher, BLOW,
    Insurance, Advantage Visa), Wise, Sharesies, KiwiSaver, AustralianSuper.
    Keep their last values unless Kendall supplies new ones. Convert NZD → AUD
