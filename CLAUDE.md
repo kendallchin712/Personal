@@ -46,12 +46,18 @@ to fix. Kendall changes those settings, not you.
 
 ## "Refresh my money map": the workflow
 
+0. **Start from the published page, not the repo copy.** Pushes from routine
+   sessions sometimes fail, so the published Money Map is the master copy.
+   `Artifact` `read` the Money Map URL (no `path`, to count as viewed), then
+   read it again with `path: "index.html"` to download it. Save the part
+   between `<body>` and `</body>` over `money-map.html`, which starts with
+   `<title>Money Map</title>`.
 1. Run `python3 up-sync.py --json`.
 2. Map the Up accounts to the `money-map.html` cards:
    - TRANSACTIONAL account → **Up — Spending**
    - Saver `Essentials` → **Up — Essentials (rent + bills)**
    - Saver `Emergency` → **Up — Emergency fund** (5.35%+ Grow rate saver)
-   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $3,100)
+   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $3,400)
    - **Up — Wants** is closed ($0) unless a Wants saver reappears.
    - Up's saver names carry emoji prefixes (e.g. "🚨 Emergency",
      "💰 Essentials", "🏖️ Leave/Time off"), so match by the word the name
@@ -67,7 +73,8 @@ to fix. Kendall changes those settings, not you.
    - the **Safety net goal**: Up Emergency + BNZ Fire Extinguisher (AUD)
      against **$12,000**
    - the Leave action text, if Leave moved
-   - the "as at" date in the masthead **and** the footer
+   - the "as at" date in the masthead **and** the footer, as today's date
+     in Melbourne (`TZ=Australia/Melbourne date`)
 5. Send Kendall the rendered file, then commit and push (see Git below).
 
 ## How the money flows
@@ -83,12 +90,14 @@ to fix. Kendall changes those settings, not you.
 **Payday (~10th):** the Up auto-split is **not** firing, so Kendall moves money
 by hand, in this order:
 1. Essentials → back to its target
-2. Leave → $1,000 (must hit $3,100 by the Dec 10 pay)
+2. Leave → $1,000 on both the Nov 10 and Dec 10 pays (target $3,400)
 3. Emergency → $325 ("bank the raise": the $290→$310 increase)
 4. The rest stays in Spending
 
-From **February**, once the Christmas leave is used, the $1,000 Leave transfer
-switches to Emergency.
+Each pay covers the **month before**, so the Christmas break lands in the
+**Jan 10 and Feb 10 pays** (~14 days each, ~$3,340 net vs ~$5,000 normal).
+On each of those paydays Kendall moves ~$1,650 from Leave into Spending.
+From the **Mar 10 pay**, the $1,000 Leave transfer switches to Emergency.
 
 **Leave rule:** for each unpaid day off, Kendall pays themself the day rate
 ($310) from the Leave saver into Spending.
@@ -147,7 +156,8 @@ A scheduled routine runs this every morning at 8am Melbourne time:
    on the Morning Brief URL. Then `set` it with `if_version` set to the
    version you just read. Write fresh `accounts` (Spending = the TRANSACTIONAL
    account; Essentials, Emergency and `Leave/Time off` savers by name),
-   `updatedAt` = now (ISO, UTC) and `source` = "Up API". Keep `targets`,
+   `updatedAt` = the output of `date -u +%Y-%m-%dT%H:%M:%SZ` run at that
+   moment (never a remembered or guessed time) and `source` = "Up API". Keep `targets`,
    `manual` and `links` as they were.
 4. **Money Map:** run the refresh workflow above (Up cards, hero, net worth,
    safety net, dates). Then `Artifact` `read` the Money Map URL and publish

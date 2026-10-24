@@ -163,7 +163,7 @@ footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
     items.push({ d: payday, t: daysToPay <= 1 ? "Payday. Essentials to full, then $1,000 to Leave, then $325 to Emergency." : "Payday in " + daysToPay + " days. Essentials, then Leave $1,000, then Emergency $325." });
     items.push({ d: rent, t: "Rent of $5,097 debits from Essentials around now. Mona's and Gen's shares refill it a day or two later." });
     var xmas = { y: 2026, m: 12, d: 21 };
-    if (dayDiff(now, xmas) >= 0) items.push({ d: xmas, t: "Bedford Lane shutdown starts. Leave needs $3,100 by the Dec 10 pay." });
+    if (dayDiff(now, xmas) >= 0) items.push({ d: xmas, t: "Bedford Lane shutdown starts. It shows up in the light Jan 10 and Feb 10 pays, which Leave covers." });
     items.sort(function (a, b) { return dayDiff(b.d, a.d); });
     $("#next-list").innerHTML = items.map(function (i) {
       return '<li><span class="when">' + esc(label(i.d.y, i.d.m, i.d.d)) + '</span><span>' + esc(i.t) + '</span></li>';
@@ -243,7 +243,7 @@ footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
     var spend = +a.spending || 0;
     var perDay = spend / daysToPay;
     var ess = +a.essentials || 0, essT = +t.essentials || 0;
-    var leave = +a.leave || 0, leaveT = +t.leave || 3100;
+    var leave = +a.leave || 0, leaveT = +t.leave || 3400;
     var emer = +a.emergency || 0, fire = +(doc.manual && doc.manual.fireExtinguisherAUD) || 0, netT = +t.safetyNet || 12000;
     var net = emer + fire;
     var pct = function (v, T) { return T > 0 ? Math.max(0, Math.min(100, v / T * 100)) : 0; };
