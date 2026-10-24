@@ -105,6 +105,12 @@ From the **Mar 10 pay**, the $1,000 Leave transfer switches to Emergency.
 **Upcoming leave:** Bedford Lane shutdown 21 Dec 2026 – 3 Jan 2027, plus
 18–22 Jan 2027.
 
+**Public holidays are unpaid** (Bedford Lane is closed on them; e.g.
+Melbourne Cup, Tue 3 Nov 2026). Don't draw on Leave for them; absorb them
+in that month's pay. November has 20 billable days, so the Dec 10 pay is
+~$6,200 gross (~$4,770 net). That's the tightest month: it carries Christmas
+in NZ.
+
 ## Goals and standing decisions
 
 - **Safety net $12k** (~4 months of essentials) = Up Emergency (instant) + BNZ
