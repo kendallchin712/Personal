@@ -57,7 +57,7 @@ to fix. Kendall changes those settings, not you.
    - TRANSACTIONAL account → **Up — Spending**
    - Saver `Essentials` → **Up — Essentials (rent + bills)**
    - Saver `Emergency` → **Up — Emergency fund** (5.35%+ Grow rate saver)
-   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $3,400)
+   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $4,030)
    - **Up — Wants** is closed ($0) unless a Wants saver reappears.
    - Up's saver names carry emoji prefixes (e.g. "🚨 Emergency",
      "💰 Essentials", "🏖️ Leave/Time off"), so match by the word the name
@@ -90,20 +90,25 @@ to fix. Kendall changes those settings, not you.
 **Payday (~10th):** the Up auto-split is **not** firing, so Kendall moves money
 by hand, in this order:
 1. Essentials → back to its target
-2. Leave → $1,000 on both the Nov 10 and Dec 10 pays (target $3,400)
-3. Emergency → $325 ("bank the raise": the $290→$310 increase)
+2. Leave → **$1,325** on both the Nov 10 and Dec 10 pays (target $4,030).
+   This includes the $325 that normally goes to Emergency.
+3. Emergency → $325 ("bank the raise": the $290→$310 increase), **paused
+   until the Mar 10 pay**
 4. The rest stays in Spending
 
-Each pay covers the **month before**, so the Christmas break lands in the
-**Jan 10 and Feb 10 pays** (~14 days each, ~$3,340 net vs ~$5,000 normal).
-On each of those paydays Kendall moves ~$1,650 from Leave into Spending.
-From the **Mar 10 pay**, the $1,000 Leave transfer switches to Emergency.
+Each pay covers the **month before**, so the leave lands in the light
+**Jan 10 pay** (December: 14 days, ~$3,330 net) and **Feb 10 pay** (January:
+13 days, ~$3,090 net). Following the leave rule, Kendall moves **$2,170**
+from Leave into Spending on Jan 10 (7 shutdown days) and **$1,860** on Feb 10
+(6 January days). From the **Mar 10 pay**, the $1,000 + $325 go to Emergency.
 
 **Leave rule:** for each unpaid day off, Kendall pays themself the day rate
 ($310) from the Leave saver into Spending.
 
-**Upcoming leave:** Bedford Lane shutdown 21 Dec 2026 – 3 Jan 2027, plus
-18–22 Jan 2027.
+**Upcoming leave (13 unpaid days, $4,030 at $310):** Bedford Lane shutdown
+Mon 21 Dec 2026 – Fri 1 Jan 2027 (7 days; 25 Dec, 28 Dec, 1 Jan are public
+holidays), plus Kendall's own leave Mon 18 – Tue 26 Jan 2027 (6 days; 26 Jan
+is Australia Day). Back at work Wed 27 Jan.
 
 **Public holidays are unpaid** (Bedford Lane is closed on them; e.g.
 Melbourne Cup, Tue 3 Nov 2026). Don't draw on Leave for them; absorb them
