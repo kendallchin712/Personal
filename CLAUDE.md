@@ -57,7 +57,9 @@ to fix. Kendall changes those settings, not you.
    - TRANSACTIONAL account → **Up — Spending**
    - Saver `Essentials` → **Up — Essentials (rent + bills)**
    - Saver `Emergency` → **Up — Emergency fund** (5.35%+ Grow rate saver)
-   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $4,030)
+   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $4,650)
+   - Saver `Alice` → **Up — Alice**: friends' transfers forwarded in for a
+     group collection. Show it, but leave it **out** of day-to-day and net worth.
    - **Up — Wants** is closed ($0) unless a Wants saver reappears.
    - Up's saver names carry emoji prefixes (e.g. "🚨 Emergency",
      "💰 Essentials", "🏖️ Leave/Time off"), so match by the word the name
@@ -90,25 +92,37 @@ to fix. Kendall changes those settings, not you.
 **Payday (~10th):** the Up auto-split is **not** firing, so Kendall moves money
 by hand, in this order:
 1. Essentials → back to its target
-2. Leave → **$1,325** on both the Nov 10 and Dec 10 pays (target $4,030).
-   This includes the $325 that normally goes to Emergency.
+2. Leave → **$1,650** on both the Nov 10 and Dec 10 pays (target $4,650).
 3. Emergency → $325 ("bank the raise": the $290→$310 increase), **paused
-   until the Mar 10 pay**
+   for the Nov 10 and Dec 10 pays, back from the Jan 10 pay**
 4. The rest stays in Spending
 
 Each pay covers the **month before**, so the leave lands in the light
 **Jan 10 pay** (December: 14 days, ~$3,330 net) and **Feb 10 pay** (January:
-13 days, ~$3,090 net). Following the leave rule, Kendall moves **$2,170**
-from Leave into Spending on Jan 10 (7 shutdown days) and **$1,860** on Feb 10
-(6 January days). From the **Mar 10 pay**, the $1,000 + $325 go to Emergency.
+13 days, ~$3,090 net). Leave draws into Spending: **$310** for the October
+sick day (now), **$310** on Dec 10 (9 Nov), **$2,170** on Jan 10 (7 shutdown
+days), **$1,860** on Feb 10 (6 January days). Kendall is in NZ from 21 Dec to
+end of January with family covering food and board, so Spending builds a
+surplus in Jan–Feb. Before flying on 24 Feb, move ~$2,000 of it into Leave
+(Feb–Mar trip, thin Apr 10 pay), or to Emergency if Kendall works that trip.
 
 **Leave rule:** for each unpaid day off, Kendall pays themself the day rate
 ($310) from the Leave saver into Spending.
 
-**Upcoming leave (13 unpaid days, $4,030 at $310):** Bedford Lane shutdown
-Mon 21 Dec 2026 – Fri 1 Jan 2027 (7 days; 25 Dec, 28 Dec, 1 Jan are public
-holidays), plus Kendall's own leave Mon 18 – Tue 26 Jan 2027 (6 days; 26 Jan
-is Australia Day). Back at work Wed 27 Jan.
+**Upcoming leave (15 unpaid days, $4,650 at $310):** 1 sick day in October,
+Mon 9 Nov, Bedford Lane shutdown Mon 21 Dec 2026 – Fri 1 Jan 2027 (7 days;
+25 Dec, 28 Dec, 1 Jan are public holidays), plus Kendall's own leave Mon 18 –
+Tue 26 Jan 2027 (6 days; 26 Jan is Australia Day). Kendall works remotely from
+NZ on the other days and is back at work Wed 27 Jan.
+
+**Trips (all flights paid; check Gmail/Calendar before asking about travel):**
+- Auckland Sat 7 – Sun 15 Nov 2026 (Jetstar ELV8JP). Family covers costs.
+- NZ for Christmas from Mon 21 Dec (Air NZ NZ126, one-way). The return at the
+  end of January isn't booked; NZ money (BLOW) pays for it and NZ extras, so
+  top BLOW up ~A$700 via Wise from the Dec 10 pay. Mum and grandma cover food
+  and accommodation (Auckland, a week in Wanaka with mum).
+- NZ Wed 24 Feb – Tue 16 Mar 2027 (Jetstar UMPJTC; Auckland→Dunedin 7–16 Mar,
+  ZS1IXD). Not yet known whether those days are unpaid.
 
 **Public holidays are unpaid** (Bedford Lane is closed on them; e.g.
 Melbourne Cup, Tue 3 Nov 2026). Don't draw on Leave for them; absorb them
