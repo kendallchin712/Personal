@@ -87,12 +87,12 @@ to fix. Kendall changes those settings, not you.
   Essentials, so never turn Cover off. Any Spending money there takes part of
   the rent first, so Kendall moves $5,214 Essentials → Spending the day before
   rent. Essentials target: **$5,393** (rent + $179 buffer).
-- Flatmates Mona and Gen each paid ~$1,617.7 (~$3,235 total) at the old rent,
-  around the 17th–20th. Check their shares rose with the rent (same split:
-  ~$1,655 each).
+- Rent split (rent rises are split evenly three ways). From Nov 2026:
+  Mona **$1,656.74**, Gen **$1,656.74** (each was $1,617.74), Kendall
+  **$1,900.52** (was ~$1,862). Flatmates pay around the 17th–20th.
   These **auto-forward into Essentials**. That money is rent, never spending money.
-- Kendall's share (~$1,900 at the new rent, plus subscriptions) tops
-  Essentials back to target from the next pay.
+- Kendall's share plus subscriptions tops Essentials back to target from the
+  next pay.
 - Low Essentials mid-month is expected. Label it as a post-rent trough.
 
 **Payday (~10th):** the Up auto-split is **not** firing, so Kendall moves money
