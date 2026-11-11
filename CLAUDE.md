@@ -82,13 +82,17 @@ to fix. Kendall changes those settings, not you.
 ## How the money flows
 
 **Rent cycle (normal, don't flag it as a problem):**
-- MICM rent of **$5,097** comes out around the 16th–19th. It debits **Spending**
-  and Up's "Cover" pulls the shortfall from Essentials, so never turn Cover
-  off. Any Spending money there takes part of the rent first, so Kendall moves
-  $5,097 Essentials → Spending the day before rent. Essentials target: $5,276.
-- Flatmates Mona and Gen each pay ~$1,617.7 (~$3,235 total) around the 17th–20th.
+- MICM rent is **$5,214** from Nov 2026 (was $5,097). It comes out around the
+  18th–19th. It debits **Spending** and Up's "Cover" pulls the shortfall from
+  Essentials, so never turn Cover off. Any Spending money there takes part of
+  the rent first, so Kendall moves $5,214 Essentials → Spending the day before
+  rent. Essentials target: **$5,393** (rent + $179 buffer).
+- Flatmates Mona and Gen each paid ~$1,617.7 (~$3,235 total) at the old rent,
+  around the 17th–20th. Check their shares rose with the rent (same split:
+  ~$1,655 each).
   These **auto-forward into Essentials**. That money is rent, never spending money.
-- Kendall's share (~$1,880) tops Essentials back to target from the next pay.
+- Kendall's share (~$1,900 at the new rent, plus subscriptions) tops
+  Essentials back to target from the next pay.
 - Low Essentials mid-month is expected. Label it as a post-rent trough.
 
 **Payday (~10th):** the Up auto-split is **not** firing, so Kendall moves money

@@ -149,19 +149,19 @@ footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
   var now = melParts(new Date());
   $("#today").textContent = new Date().toLocaleDateString("en-AU", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" });
 
-  // Next payday (~10th) and next rent debit (~16th).
+  // Next payday (~10th) and the move before rent (~17th; rent debits ~18th–19th).
   function nextOn(dom) {
     if (now.d <= dom) return { y: now.y, m: now.m, d: dom };
     var n = addMonths(now, 1); return { y: n.y, m: n.m, d: dom };
   }
-  var payday = nextOn(10), rent = nextOn(16);
+  var payday = nextOn(10), rent = nextOn(17);
   var daysToPay = Math.max(1, dayDiff(now, payday));
 
   // ---- Coming up (static calendar facts, always visible) ----
   function renderNext(extra) {
     var items = [];
     items.push({ d: payday, t: daysToPay <= 1 ? "Payday. Essentials to full, then $1,650 to Leave (Nov and Dec pays)." : "Payday in " + daysToPay + " days. Essentials first, then $1,650 to Leave." });
-    items.push({ d: rent, t: "Rent of $5,097 debits from Essentials around now. Mona's and Gen's shares refill it a day or two later." });
+    items.push({ d: rent, t: "Rent ($5,214) comes out of Spending in a day or two. Move $5,214 from Essentials to Spending first. Mona's and Gen's shares refill Essentials after." });
     var xmas = { y: 2026, m: 12, d: 21 };
     if (dayDiff(now, xmas) >= 0) items.push({ d: xmas, t: "Bedford Lane shutdown starts. It shows up in the light Jan 10 and Feb 10 pays, which Leave covers." });
     items.sort(function (a, b) { return dayDiff(b.d, a.d); });
