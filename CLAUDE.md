@@ -82,8 +82,10 @@ to fix. Kendall changes those settings, not you.
 ## How the money flows
 
 **Rent cycle (normal, don't flag it as a problem):**
-- MICM rent of **$5,097** debits from Essentials around the 16th–19th, which
-  drains Essentials to near zero.
+- MICM rent of **$5,097** comes out around the 16th–19th. It debits **Spending**
+  and Up's "Cover" pulls the shortfall from Essentials, so never turn Cover
+  off. Any Spending money there takes part of the rent first, so Kendall moves
+  $5,097 Essentials → Spending the day before rent. Essentials target: $5,276.
 - Flatmates Mona and Gen each pay ~$1,617.7 (~$3,235 total) around the 17th–20th.
   These **auto-forward into Essentials**. That money is rent, never spending money.
 - Kendall's share (~$1,880) tops Essentials back to target from the next pay.
