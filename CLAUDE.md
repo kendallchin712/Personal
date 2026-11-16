@@ -2,10 +2,15 @@
 
 Read this first. It lets a fresh session pick up where earlier ones left off.
 
-Kendall is a NZ citizen living in Melbourne, an Australian tax resident, and a
-self-employed contractor for Bedford Lane, invoiced through Hnry. Day rate is
-**$310/day from 1 Oct 2026** (was $290). Invoice goes out on the 1st, pay lands
-around the 10th.
+Kendall is a NZ citizen living in Melbourne and an Australian tax resident.
+Until 30 Nov 2026: self-employed contractor for Bedford Lane at **$310/day**,
+invoiced through Hnry (invoice on the 1st, pay ~10th for the month before).
+The last Hnry invoice is 1 Dec (November, 19 days) → pay ~10 Dec.
+**From 1 Dec 2026: full-time employee of Bedford Lane, $75,000 + 12% super,
+paid fortnightly** (~$2,884.62 gross, ~$2,326 net a fortnight; $288.46 a
+weekday). Public holidays, 4 weeks' annual leave and 10 sick days are paid.
+Still to confirm: first pay date, and whether the Christmas shutdown is paid or
+leave can be taken in advance.
 
 Kendall likes direct, blunt, concise answers with real numbers. Use the
 family terms Kendall uses: the late grandmother is **"nen"**. Never invent
@@ -57,7 +62,7 @@ to fix. Kendall changes those settings, not you.
    - TRANSACTIONAL account → **Up — Spending**
    - Saver `Essentials` → **Up — Essentials (rent + bills)**
    - Saver `Emergency` → **Up — Emergency fund** (5.35%+ Grow rate saver)
-   - Saver `Leave/Time off` → **Up — Leave / Time off** (target $4,650)
+   - Saver `Leave/Time off` → **Up — Leave / Time off** (summer unpaid days only)
    - Saver `Alice` → **Up — Alice**: friends' transfers forwarded in for a
      group collection. Show it, but leave it **out** of day-to-day and net worth.
    - **Up — Wants** is closed ($0) unless a Wants saver reappears.
@@ -96,25 +101,26 @@ to fix. Kendall changes those settings, not you.
   next pay.
 - Low Essentials mid-month is expected. Label it as a post-rent trough.
 
-**Payday (~10th):** the Up auto-split is **not** firing, so Kendall moves money
-by hand, in this order:
-1. Essentials → back to its target
-2. Leave → **$1,650** on both the Nov 10 and Dec 10 pays (target $4,650).
-3. Emergency → $325 ("bank the raise": the $290→$310 increase), **paused
-   for the Nov 10 and Dec 10 pays, back from the Jan 10 pay**
-4. The rest stays in Spending
+**Dec 10 (last Hnry pay):** Essentials → $5,393; **$1,000 → Leave**; $310
+Leave → Spending (9 Nov); ~A$700 → BLOW via Wise; Emergency paused; the rest
+stays in Spending.
 
-Each pay covers the **month before**, so the leave lands in the light
-**Jan 10 pay** (December: 14 days, ~$3,330 net) and **Feb 10 pay** (January:
-13 days, ~$3,090 net). Leave draws into Spending: **$310** for the October
-sick day (now), **$310** on Dec 10 (9 Nov), **$2,170** on Jan 10 (7 shutdown
-days), **$1,860** on Feb 10 (6 January days). Kendall is in NZ from 21 Dec to
-end of January with family covering food and board, so Spending builds a
-surplus in Jan–Feb. Before flying on 24 Feb, move ~$2,000 of it into Leave
-(Feb–Mar trip, thin Apr 10 pay), or to Emergency if Kendall works that trip.
+**Every fortnightly salary pay** (moved by hand; the Up auto-split isn't firing):
+1. **$951 → Essentials** (rent share $1,900.52 + ~$160 bills a month)
+2. **$600 → Emergency** until the safety net reaches $12k, then the same into
+   a Sharesies broad index fund
+3. The rest (~$775) stays in Spending
 
-**Leave rule:** for each unpaid day off, Kendall pays themself the day rate
-($310) from the Leave saver into Spending.
+There are no Jan 10 / Feb 10 contractor pays any more. Summer salary pays are
+light by the unpaid days: top each one up from Leave by **$288.46 per unpaid
+day** on the payslip (public holidays are paid). Leave holds ~$3,430 after
+Dec 10 and the 9 Nov draw: enough for ~11.9 unpaid days. Whatever is left
+after January goes to Emergency. Kendall is in NZ from 21 Dec to end of
+January with family covering food and board, so Spending builds a surplus.
+
+**Leave rule:** for each unpaid day off, Kendall moves the day rate from Leave
+into Spending: $310 for contractor days (to 30 Nov), $288.46 for employee days.
+Once this summer is covered the Leave saver retires (annual leave is paid).
 
 **Upcoming leave (15 unpaid days, $4,650 at $310):** 1 sick day in October,
 Mon 9 Nov, Bedford Lane shutdown Mon 21 Dec 2026 – Fri 1 Jan 2027 (7 days;
@@ -131,11 +137,10 @@ NZ on the other days and is back at work Wed 27 Jan.
 - NZ Wed 24 Feb – Tue 16 Mar 2027 (Jetstar UMPJTC; Auckland→Dunedin 7–16 Mar,
   ZS1IXD). Not yet known whether those days are unpaid.
 
-**Public holidays are unpaid** (Bedford Lane is closed on them; e.g.
-Melbourne Cup, Tue 3 Nov 2026). Don't draw on Leave for them; absorb them
-in that month's pay. November has 20 billable days, so the Dec 10 pay is
-~$6,200 gross (~$4,770 net). That's the tightest month: it carries Christmas
-in NZ.
+**Public holidays:** unpaid as a contractor (e.g. Melbourne Cup, 3 Nov 2026),
+paid as an employee from 1 Dec. November has 19 billable days, so the Dec 10
+pay is ~$5,890 gross (~$4,450–4,520 net). December is the tightest month: it
+carries Christmas in NZ.
 
 ## Goals and standing decisions
 
@@ -153,8 +158,11 @@ in NZ.
   offer to start one.
 - **Open questions for Hnry:** temporary-resident status (affects tax on NZ
   income and selling NZ shares), Hnry's pricing change.
-- **Super is settled:** Bedford Lane pays 12% Super Guarantee on top of each
-  invoice (18 Sep 2026: $730.80 = 12% of the $6,090 invoice).
+- **Super is settled:** Bedford Lane pays 12% Super Guarantee: on each invoice
+  until Nov 2026, then on salary ($9,000/yr, ~$346 a fortnight).
+- **Hnry ends** after the final November invoice. Tax for FY26/27 mixes 5
+  months of contractor income (Hnry over-withheld before, so expect a refund)
+  with PAYG salary.
 
 ## Published pages (private claude.ai artifacts)
 
