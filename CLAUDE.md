@@ -83,10 +83,11 @@ to fix. Kendall changes those settings, not you.
 
 **Rent cycle (normal, don't flag it as a problem):**
 - MICM rent is **$5,214** from Nov 2026 (was $5,097). It comes out around the
-  18th–19th. It debits **Spending** and Up's "Cover" pulls the shortfall from
-  Essentials, so never turn Cover off. Any Spending money there takes part of
-  the rent first, so Kendall moves $5,214 Essentials → Spending the day before
-  rent. Essentials target: **$5,393** (rent + $179 buffer).
+  18th–19th and debits **Spending**, so Kendall moves $5,214 Essentials →
+  Spending the day before rent. Essentials target: **$5,393** (rent + $179
+  buffer). Up's "Cover" is per-transaction (Kendall taps it, or a rule does):
+  subscriptions such as Audible are covered from Essentials; everyday spending
+  (Uber, shopping) should stay on Spending, not be covered from Essentials.
 - Rent split (rent rises are split evenly three ways). From Nov 2026:
   Mona **$1,656.74**, Gen **$1,656.74** (each was $1,617.74), Kendall
   **$1,900.52** (was ~$1,862). Flatmates pay around the 17th–20th.
