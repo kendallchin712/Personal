@@ -104,9 +104,10 @@ to fix. Kendall changes those settings, not you.
   next pay.
 - Low Essentials mid-month is expected. Label it as a post-rent trough.
 
-**Dec 10 (last Hnry pay):** Essentials → $5,393; **$1,000 → Leave**; $310
-Leave → Spending (9 Nov); ~A$700 → BLOW via Wise; Emergency paused; the rest
-stays in Spending.
+**Dec 10 (last Hnry pay):** Essentials → $5,393; **$1,000 → Leave**; ~A$700 →
+BLOW via Wise; Emergency paused; the rest stays in Spending. The 9 Nov leave
+draw ($310) and the $10 left over from the October sick day ($300 drawn on
+6 Nov) were taken early, on 18 Nov, so there's no Leave draw on Dec 10.
 
 **Every fortnightly salary pay** (moved by hand; the Up auto-split isn't firing):
 1. **$951 → Essentials** (rent share $1,900.52 + ~$160 bills a month)
