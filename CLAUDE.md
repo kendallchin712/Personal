@@ -96,7 +96,10 @@ to fix. Kendall changes those settings, not you.
 - Rent split (rent rises are split evenly three ways). From Nov 2026:
   Mona **$1,656.74**, Gen **$1,656.74** (each was $1,617.74), Kendall
   **$1,900.52** (was ~$1,862). Flatmates pay around the 17th–20th.
-  These **auto-forward into Essentials**. That money is rent, never spending money.
+  These are meant to **auto-forward into Essentials**, but in Nov 2026 they
+  landed in Spending (forward didn't fire) and Kendall moved only their own
+  $1,900 from Essentials; the result is the same. That money is rent, never
+  spending money. Nov: Mona paid $1,654.36 ($2.38 short).
 - Kendall's share plus subscriptions tops Essentials back to target from the
   next pay.
 - Low Essentials mid-month is expected. Label it as a post-rent trough.
