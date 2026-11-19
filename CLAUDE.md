@@ -100,9 +100,9 @@ to fix. Kendall changes those settings, not you.
   to Essentials any more; it sits in Spending for a day and pays the rent. It
   is rent, never spending money. (Nov: Mona paid $1,654.36, $2.38 short.)
 - **Essentials holds only Kendall's share plus bills.** Target before rent:
-  **$2,060** ($1,900.52 share + ~$160 subscriptions). On ~17th–18th Kendall
+  **$2,120** ($1,900.52 share + ~$220 subscriptions and water). On ~17th–18th Kendall
   moves **$1,900.52 Essentials → Spending** for rent. Each fortnightly pay
-  puts $951 back. Up's "Cover" is per-transaction: subscriptions such as
+  puts $980 back. Up's "Cover" is per-transaction: subscriptions such as
   Audible are covered from Essentials; everyday spending (Uber, shopping)
   stays on Spending.
 - Unusual on the rent day: rent out but a flatmate's payment missing, or
@@ -121,10 +121,10 @@ stays in Spending for Dec 10–21. There's no Leave draw on Dec 10: the 9 Nov
 draw ($310) and the $10 left from the October sick day were taken on 18 Nov.
 
 **Every fortnightly salary pay** (moved by hand; the Up auto-split isn't firing):
-1. **$951 → Essentials** (rent share $1,900.52 + ~$160 bills a month)
+1. **$980 → Essentials** (rent share $1,900.52 + ~$220 subscriptions and water a month: ClassPass $89, Netflix $29, Prime Video ~$29, Apple ~$24, Audible $16, Prime $10, water ~$24)
 2. **$600 → Emergency** until the safety net reaches $12k, then the same into
    a Sharesies broad index fund
-3. The rest (~$775) stays in Spending
+3. The rest (~$746) stays in Spending
 
 There are no Jan 10 / Feb 10 contractor pays any more. Summer salary pays are
 light by the unpaid days: top each one up from Leave by **$288.46 per unpaid
