@@ -9,8 +9,12 @@ The last Hnry invoice is 1 Dec (November, 19 days) → pay ~10 Dec.
 **From 1 Dec 2026: full-time employee of Bedford Lane, $75,000 + 12% super,
 paid fortnightly** (~$2,884.62 gross, ~$2,326 net a fortnight; $288.46 a
 weekday). Public holidays, 4 weeks' annual leave and 10 sick days are paid.
-Still to confirm: first pay date, and whether the Christmas shutdown is paid or
-leave can be taken in advance.
+Salary is paid fortnightly on a **Tuesday or Wednesday** (exact day to
+confirm). The first pay is probably Tue 15 / Wed 16 Dec, then 29/30 Dec,
+12/13 Jan, 26/27 Jan, 9/10 Feb and so on. The Morning Brief assumes Tue 15 Dec
+(`SALARY_START` in `morning-brief.html`); fix it once a payslip confirms the
+date. Still to confirm: whether the Christmas shutdown is paid or leave can be
+taken in advance.
 
 Kendall likes direct, blunt, concise answers with real numbers. Use the
 family terms Kendall uses: the late grandmother is **"nen"**. Never invent

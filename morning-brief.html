@@ -149,21 +149,35 @@ footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
   var now = melParts(new Date());
   $("#today").textContent = new Date().toLocaleDateString("en-AU", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" });
 
-  // Next payday (~10th) and the move before rent (~17th; rent debits ~18th–19th).
+  // Paydays: the last Hnry pay ~10 Dec 2026, then salary fortnightly on a Tue/Wed.
+  // The salary dates assume a first pay on Tue 15 Dec; change SALARY_START once a payslip confirms it.
+  // The rent reminder is ~17th (rent debits ~18th–19th).
   function nextOn(dom) {
     if (now.d <= dom) return { y: now.y, m: now.m, d: dom };
     var n = addMonths(now, 1); return { y: n.y, m: n.m, d: dom };
   }
-  var payday = nextOn(10), rent = nextOn(17);
+  var HNRY_LAST = { y: 2026, m: 12, d: 10 }, SALARY_START = { y: 2026, m: 12, d: 15 };
+  var lastHnry = dayDiff(now, HNRY_LAST) >= 0;
+  function nextSalary() {
+    var k = Math.max(0, Math.ceil(dayDiff(SALARY_START, now) / 14));
+    var dt = new Date(Date.UTC(SALARY_START.y, SALARY_START.m - 1, SALARY_START.d + 14 * k));
+    return { y: dt.getUTCFullYear(), m: dt.getUTCMonth() + 1, d: dt.getUTCDate() };
+  }
+  var payday = lastHnry ? HNRY_LAST : nextSalary(), rent = nextOn(17);
   var daysToPay = Math.max(1, dayDiff(now, payday));
 
   // ---- Coming up (static calendar facts, always visible) ----
   function renderNext(extra) {
     var items = [];
-    items.push({ d: payday, t: daysToPay <= 1 ? "Payday. Essentials to full, then $1,000 to Leave (last Hnry pay)." : "Payday in " + daysToPay + " days. Essentials first, then $1,000 to Leave." });
-    items.push({ d: rent, t: "Rent ($5,214) comes out of Spending in a day or two. Move $5,214 from Essentials to Spending first. Mona's and Gen's shares refill Essentials after." });
+    if (lastHnry) {
+      items.push({ d: payday, t: (daysToPay <= 1 ? "Last Hnry pay today." : "Last Hnry pay in " + daysToPay + " days.") + " Essentials back to $5,393, $1,000 to Leave, ~A$700 to BLOW via Wise, the rest stays in Spending." });
+      items.push({ d: SALARY_START, t: "First salary pay, around Tue/Wed (date to confirm). $951 to Essentials, $600 to Emergency, the rest stays in Spending." });
+    } else {
+      items.push({ d: payday, t: (daysToPay <= 1 ? "Salary day (Tue/Wed)." : "Salary in about " + daysToPay + " days (Tue/Wed).") + " $951 to Essentials, $600 to Emergency, the rest stays in Spending. Light pay? Top it up from Leave, $288.46 per unpaid day." });
+    }
+    items.push({ d: rent, t: "Rent ($5,214) comes out of Spending around the 18th. Before it does, make sure Spending holds it: your $1,900.52 from Essentials plus Mona's and Gen's shares." });
     var xmas = { y: 2026, m: 12, d: 21 };
-    if (dayDiff(now, xmas) >= 0) items.push({ d: xmas, t: "Bedford Lane shutdown starts. It shows up in the light Jan 10 and Feb 10 pays, which Leave covers." });
+    if (dayDiff(now, xmas) >= 0) items.push({ d: xmas, t: "Fly to NZ; Bedford Lane shutdown starts. Public holidays are paid now. For each unpaid day on a payslip, move $288.46 from Leave to Spending." });
     items.sort(function (a, b) { return dayDiff(b.d, a.d); });
     $("#next-list").innerHTML = items.map(function (i) {
       return '<li><span class="when">' + esc(label(i.d.y, i.d.m, i.d.d)) + '</span><span>' + esc(i.t) + '</span></li>';
@@ -260,7 +274,7 @@ footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
         '<div class="row"><span class="k">Essentials</span><span class="v">' + money(ess) + (essT ? ' <span class="muted small">of ' + money(essT) + '</span>' : "") + '</span>' +
           '<div class="bar"><i style="width:' + pct(ess, essT) + '%"></i></div><span class="sub">' + esc(essState) + '</span></div>' +
         '<div class="row"><span class="k">Leave / Time off</span><span class="v">' + money(leave) + ' <span class="muted small">of ' + money(leaveT) + '</span></span>' +
-          '<div class="bar"><i class="accent" style="width:' + pct(leave, leaveT) + '%"></i></div><span class="sub">' + (leave >= leaveT ? "Christmas leave is covered." : money(leaveT - leave) + " to go before the Dec 10 pay.") + '</span></div>' +
+          '<div class="bar"><i class="accent" style="width:' + pct(leave, leaveT) + '%"></i></div><span class="sub">' + (!lastHnry ? "For unpaid summer days: $288.46 each into Spending." : leave >= leaveT ? "Christmas leave is covered." : money(leaveT - leave) + " to go before the Dec 10 pay.") + '</span></div>' +
         '<div class="row"><span class="k">Safety net</span><span class="v">' + Math.round(pct(net, netT)) + '%</span>' +
           '<div class="bar"><i style="width:' + pct(net, netT) + '%"></i></div><span class="sub">Up Emergency ' + money(emer) + ' + BNZ Fire Extinguisher ' + money(fire) + ' of ' + money(netT) + '</span></div>' +
       '</div>' +
