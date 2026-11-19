@@ -170,7 +170,7 @@ footer { font-size: 12px; color: var(--muted); padding-top: 4px; }
   function renderNext(extra) {
     var items = [];
     if (lastHnry) {
-      items.push({ d: payday, t: (daysToPay <= 1 ? "Last Hnry pay today." : "Last Hnry pay in " + daysToPay + " days.") + " Essentials back to $5,393, $1,000 to Leave, ~A$700 to BLOW via Wise, the rest stays in Spending." });
+      items.push({ d: payday, t: (daysToPay <= 1 ? "Last Hnry pay today." : "Last Hnry pay in " + daysToPay + " days.") + " ~A$700 to BLOW via Wise, ~$1,700 to Emergency, the rest stays in Spending. (Essentials and Leave are already covered.)" });
       items.push({ d: SALARY_START, t: "First salary pay, around Tue/Wed (date to confirm). $951 to Essentials, $600 to Emergency, the rest stays in Spending." });
     } else {
       items.push({ d: payday, t: (daysToPay <= 1 ? "Salary day (Tue/Wed)." : "Salary in about " + daysToPay + " days (Tue/Wed).") + " $951 to Essentials, $600 to Emergency, the rest stays in Spending. Light pay? Top it up from Leave, $288.46 per unpaid day." });

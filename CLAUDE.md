@@ -91,27 +91,34 @@ to fix. Kendall changes those settings, not you.
 ## How the money flows
 
 **Rent cycle (normal, don't flag it as a problem):**
-- MICM rent is **$5,214** from Nov 2026 (was $5,097). It comes out around the
-  18th–19th and debits **Spending**, so Kendall moves $5,214 Essentials →
-  Spending the day before rent. Essentials target: **$5,393** (rent + $179
-  buffer). Up's "Cover" is per-transaction (Kendall taps it, or a rule does):
-  subscriptions such as Audible are covered from Essentials; everyday spending
-  (Uber, shopping) should stay on Spending, not be covered from Essentials.
+- MICM rent is **$5,214** from Nov 2026 (was $5,097). It comes out of
+  **Spending** around the 18th.
 - Rent split (rent rises are split evenly three ways). From Nov 2026:
   Mona **$1,656.74**, Gen **$1,656.74** (each was $1,617.74), Kendall
-  **$1,900.52** (was ~$1,862). Flatmates pay around the 17th–20th.
-  These are meant to **auto-forward into Essentials**, but in Nov 2026 they
-  landed in Spending (forward didn't fire) and Kendall moved only their own
-  $1,900 from Essentials; the result is the same. That money is rent, never
-  spending money. Nov: Mona paid $1,654.36 ($2.38 short).
-- Kendall's share plus subscriptions tops Essentials back to target from the
-  next pay.
-- Low Essentials mid-month is expected. Label it as a post-rent trough.
+  **$1,900.52** (was ~$1,862). **Mona and Gen pay by automatic payment straight
+  into Spending (~17th), before rent comes out.** Their money is not forwarded
+  to Essentials any more; it sits in Spending for a day and pays the rent. It
+  is rent, never spending money. (Nov: Mona paid $1,654.36, $2.38 short.)
+- **Essentials holds only Kendall's share plus bills.** Target before rent:
+  **$2,060** ($1,900.52 share + ~$160 subscriptions). On ~17th–18th Kendall
+  moves **$1,900.52 Essentials → Spending** for rent. Each fortnightly pay
+  puts $951 back. Up's "Cover" is per-transaction: subscriptions such as
+  Audible are covered from Essentials; everyday spending (Uber, shopping)
+  stays on Spending.
+- Unusual on the rent day: rent out but a flatmate's payment missing, or
+  Spending short of $5,214 before rent. Low Essentials right after rent is
+  normal.
+- This change (Nov 2026) freed the ~$3,300 float Essentials used to carry for
+  the flatmates' shares. On 20 Nov Essentials held $3,617, about $1,550 over
+  the new target: plan is $1,000 → Leave (replacing the Dec 10 Leave
+  transfer) and the rest to Spending / buffer.
 
-**Dec 10 (last Hnry pay):** Essentials → $5,393; **$1,000 → Leave**; ~A$700 →
-BLOW via Wise; Emergency paused; the rest stays in Spending. The 9 Nov leave
-draw ($310) and the $10 left over from the October sick day ($300 drawn on
-6 Nov) were taken early, on 18 Nov, so there's no Leave draw on Dec 10.
+**Dec 10 (last Hnry pay):** Essentials already holds December's share, so no
+Essentials top-up and no Leave transfer (both done from the freed float).
+~A$700 → BLOW via Wise; ~$1,700 → Emergency (with the first salary's $600 the
+safety net reaches $12k, after which the $600 goes to Sharesies); the rest
+stays in Spending for Dec 10–21. There's no Leave draw on Dec 10: the 9 Nov
+draw ($310) and the $10 left from the October sick day were taken on 18 Nov.
 
 **Every fortnightly salary pay** (moved by hand; the Up auto-split isn't firing):
 1. **$951 → Essentials** (rent share $1,900.52 + ~$160 bills a month)
