@@ -115,7 +115,8 @@ to fix. Kendall changes those settings, not you.
 
 **Dec 10 (last Hnry pay):** Essentials already holds December's share, so no
 Essentials top-up and no Leave transfer (both done from the freed float).
-~A$700 → BLOW via Wise; ~$1,700 → Emergency (with the first salary's $600 the
+**$400 → Leave** (repays a 21 Nov shopping draw); ~A$700 → BLOW via Wise;
+~$1,700 → Emergency (with the first salary's $600 the
 safety net reaches $12k, after which the $600 goes to Sharesies); the rest
 stays in Spending for Dec 10–21. There's no Leave draw on Dec 10: the 9 Nov
 draw ($310) and the $10 left from the October sick day were taken on 18 Nov.
@@ -159,6 +160,9 @@ carries Christmas in NZ.
 
 ## Goals and standing decisions
 
+- **Never draw on Up Emergency for wants.** It's a bonus-rate saver and
+  withdrawals can cost the bonus rate. Borrow from Leave instead and repay it
+  from the next pay.
 - **Safety net $12k** (~4 months of essentials) = Up Emergency (instant) + BNZ
   Fire Extinguisher (nen's money via mum, NZ$6.6k, ~2 days to move via Wise).
   The Fire Extinguisher money stays **liquid**. Kendall decided against a
